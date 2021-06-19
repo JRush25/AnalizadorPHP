@@ -2,10 +2,15 @@ import ply.lex as lex
 # List of token names.   This is always required
 reserved = {
     'if' : 'IF',
-    'then' : 'THEN',
+    'elseif' : 'ELSEIF',
     'else' : 'ELSE',
+    'for' : 'FOR',
     'while' : 'WHILE',
-
+    'and' : 'AND',
+    'or' : 'OR',
+    'include' : 'INCLUDE',
+    'try' : 'TRY',
+    'catch' : 'CATCH'
 }
 tokens = (
     'NUMBER',
@@ -54,7 +59,36 @@ def t_BOOLEAN(t):
     r'(True|False)'
     t.value = bool(t.value)
     return t
-
+def t_IF(t):
+    r'if'
+    return t
+def t_ELSEIF(t):
+    r'elseif'
+    return t
+def t_ELSE(t):
+    r'else'
+    return t
+def t_WHILE(t):
+    r'while'
+    return t
+def t_FOR(t):
+    r'for'
+    return t
+def t_AND(t):
+    r'and'
+    return t
+def t_OR(t):
+    r'or'
+    return t
+def t_INCLUDE(t):
+    r'include'
+    return t
+def t_TRY(t):
+    r'try'
+    return t
+def t_CATCH(t):
+    r'catch'
+    return t
 # Define a rule so we can track line numbers
 def t_newline(t):
     r'\n+'
