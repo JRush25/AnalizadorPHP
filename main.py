@@ -1,6 +1,7 @@
 import ply.lex as lex
 # List of token names.   This is always required
 reserved = {
+#Joselyne Torres (inicio)
     'if' : 'IF',
     'elseif' : 'ELSEIF',
     'else' : 'ELSE',
@@ -11,6 +12,7 @@ reserved = {
     'include' : 'INCLUDE',
     'try' : 'TRY',
     'catch' : 'CATCH'
+#Joselyne Torres (fin)
 }
 tokens = (
     'NUMBER',
@@ -22,12 +24,13 @@ tokens = (
     'RPAREN',
     'MOD',
     'ID',
+#Joselyne Torres (inicio)
     'MENOR',
     'MAYOR',
     'ASIGNACION',
     'CADENA',
     'BOOLEAN'
-
+#Joselyne Torres (fin)
 ) + tuple(reserved.values())
 # Regular expression rules for simple tokens
 t_PLUS = r'\+'
@@ -41,7 +44,7 @@ t_MENOR = r'<'
 t_MAYOR = r'>'
 t_ASIGNACION = r'='
 
-
+#Joselyne Torres (inicio)
 def t_ID(t):
     r'\$[a-zA-Z_]\w+'
     t.type = reserved.get(t.value, 'ID')  # Check for reserved words
@@ -89,6 +92,7 @@ def t_TRY(t):
 def t_CATCH(t):
     r'catch'
     return t
+#Joselyne Torres (fin)
 # Define a rule so we can track line numbers
 def t_newline(t):
     r'\n+'
