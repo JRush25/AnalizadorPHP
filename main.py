@@ -11,7 +11,11 @@ reserved = {
     'or' : 'OR',
     'include' : 'INCLUDE',
     'try' : 'TRY',
-    'catch' : 'CATCH'
+    'catch' : 'CATCH',
+    'abstract' : 'ABSTRACT',
+    'declare' : 'DECLARE',
+    'echo' : 'ECHO',
+    'const' : 'CONST'
 #Joselyne Torres (fin)
 }
 tokens = (
@@ -29,7 +33,8 @@ tokens = (
     'MAYOR',
     'ASIGNACION',
     'CADENA',
-    'BOOLEAN'
+    'BOOLEAN',
+    'INCREMENTO'
 #Joselyne Torres (fin)
 ) + tuple(reserved.values())
 # Regular expression rules for simple tokens
@@ -43,6 +48,7 @@ t_MOD = r'%'
 t_MENOR = r'<'
 t_MAYOR = r'>'
 t_ASIGNACION = r'='
+t_INCREMENTO = r'\+\+'
 
 #Joselyne Torres (inicio)
 def t_ID(t):
@@ -91,6 +97,18 @@ def t_TRY(t):
     return t
 def t_CATCH(t):
     r'catch'
+    return t
+def t_ABSTRACT(t):
+    r'abstract'
+    return t
+def t_DECLARE(t):
+    r'declare'
+    return t
+def t_ECHO(t):
+    r'echo'
+    return t
+def t_CONST(t):
+    r'const'
     return t
 #Joselyne Torres (fin)
 # Define a rule so we can track line numbers
