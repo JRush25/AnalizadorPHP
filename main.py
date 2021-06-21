@@ -15,8 +15,22 @@ reserved = {
     'abstract' : 'ABSTRACT',
     'declare' : 'DECLARE',
     'echo' : 'ECHO',
-    'const' : 'CONST'
+    'const' : 'CONST',
+    'case' : 'CASE', #David Cevallos Inicio
+    'break' : 'BREAK',
+    'class' : 'CLASS',
+    'continue': 'CONTINUE',
+    'default' : 'DEFAULT',
+    'do' : 'DO',
+    'extends' : 'EXTENDS',
+    'final' : 'FINAL',
+  'function' : 'FUNCTION',
+  'global' : 'GLOBAL',
+  'instanceof' : 'INSTANCEOF'#David Cevallos fin
+
+
 #Joselyne Torres (fin)
+
 }
 tokens = (
     'NUMBER',
@@ -111,6 +125,40 @@ def t_CONST(t):
     r'const'
     return t
 #Joselyne Torres (fin)
+def t_CASE(t):
+    r'case'
+    return t
+def t_BREAK(t): #David Cevallos Inicio
+  r'break'
+  return t
+def t_CLASS(t):
+  r'class'
+  return t
+def t_CONTINUE(t):
+  r'continue'
+  return t
+def t_DEFAULT(t):
+    r'default'
+    return t
+def t_DO(t):
+    r'do'
+    return t
+def t_EXTENDS(t):
+    r'extends'
+    return t
+def t_FINAL(t):
+    r'final'
+    return t
+def t_FUNCTION(t):
+  r'function'
+  return t
+def t_GLOBAL(t):
+    r'global'
+    return t
+def t_INSTANCEOF(t):
+    r'instanceof'
+    return t
+#David Cevallos Fin
 # Define a rule so we can track line numbers
 def t_newline(t):
     r'\n+'
@@ -136,3 +184,5 @@ while linea!="":
     getTokens(lexer)
 # Tokenize
 print("Succesfull")
+
+
