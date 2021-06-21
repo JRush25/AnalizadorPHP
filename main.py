@@ -48,7 +48,16 @@ tokens = (
     'ASIGNACION',
     'CADENA',
     'BOOLEAN',
-    'INCREMENTO'
+    'INCREMENTO',
+    'BOOLEAN_OR', #David Cevallos Inicio
+    'BOOLEAN_AND',
+    'COMMENT',
+    'CONCAT_EQUAL',
+    'DECREMENTO',
+    'DIV_EQUAL',
+    'IS_NOT_EQUAL',
+    'DOUBLE_ARROW' #David Cevallos Final
+
 #Joselyne Torres (fin)
 ) + tuple(reserved.values())
 # Regular expression rules for simple tokens
@@ -63,6 +72,15 @@ t_MENOR = r'<'
 t_MAYOR = r'>'
 t_ASIGNACION = r'='
 t_INCREMENTO = r'\+\+'
+t_BOOLEAN_OR= r'\|\|'  #David Cevallos Inicio
+t_BOOLEAN_AND= r'\&\&'
+t_COMMENT=r'\#'
+t_CONCAT_EQUAL=r'\.\='
+t_DECREMENTO= r'\-\-'
+t_DIV_EQUAL= r'\/\='
+t_IS_NOT_EQUAL= r'\!\='
+t_DOUBLE_ARROW= r'\=\>'  #David Cevallos Fin
+
 
 #Joselyne Torres (inicio)
 def t_ID(t):
