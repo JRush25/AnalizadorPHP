@@ -45,7 +45,7 @@ def p_impresion(p):
  '''impresion : ECHO ID PCOMA
              | ECHO CADENA PCOMA'''
 
-def p_repeticioncomp(p):
+def p_repeticioncompfor(p):
   '''repeticionrep : MAYOR
                   | MENOR
                   | MAYORIGUAL
@@ -55,9 +55,14 @@ def p_repeticioncomp(p):
 def p_actualizar(p):
   '''actualizar : INCREMENTO
                 | DECREMENTO
-                '''
+  '''
+
 def p_repeticionfor(p):
   'repeticion : FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE '
+
+
+def p_repeticionwhile(p):
+  'repeticion : WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE'
 
 
 
