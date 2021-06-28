@@ -6,11 +6,13 @@ def p_programa(p):
     pass
 def p_sentencias(p):
     '''sentencias : asignacion
-                    | comparacion'''
+                    | comparacion
+                    | funcion'''
 
 def p_asignacion(p):
     '''asignacion : ID ASIGNACION valor PCOMA
-                | ID REF ID PCOMA'''
+                | ID REF ID PCOMA
+                | ID ASIGNACION array PCOMA'''
 def p_valor(p):
     '''valor : ID
              | NUMBER
@@ -38,6 +40,19 @@ def p_comparacionif_else(p):
 def p_comparacionif_elseif_else(p):
     'comparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE'
 
+def p_array(p):
+    '''array : ARRAY LPAREN valor DOUBLE_ARROW valor RPAREN
+            | ARRAY LPAREN valor RPAREN'''
+
+def p_contenido_array(p):
+    '''contenido : valor DOUBLE_ARROW valor
+                | contenido COMA valor DOUBLE_ARROW valor'''
+
+def p_sort(p):
+    'sort : SORT LPAREN ID RPAREN PCOMA'
+
+def p_funcion(p):
+    'funcion : sort'
 # Error rule for syntax errors
 def p_error(p):
     print("Syntax error in input!")

@@ -18,7 +18,9 @@ reserved = {
     'public' :'PUBLIC',
     'private' : 'PRIVATE',
     'protected': 'PROTECTED',
+    'array' : 'ARRAY',
     'print': 'PRINT',
+    'sort' : 'SORT',
     'const' : 'CONST', #Joselyne Torres (fin)
     'case' : 'CASE', #David Cevallos Inicio
     'break' : 'BREAK',
@@ -61,6 +63,7 @@ tokens = (
     'IGUAL',
     'MENORIGUAL',
     'MAYORIGUAL',
+    'COMA',
     'INCREMENTO',
     'BOOLEAN_OR', #David Cevallos Inicio
     'BOOLEAN_AND',
@@ -94,6 +97,7 @@ t_RLLAVE = r'\}'
 t_IGUAL = r'=='
 t_MENORIGUAL = r'<='
 t_MAYORIGUAL = r'>='
+t_COMA = r','
 t_BOOLEAN_OR= r'\|\|'  #David Cevallos Inicio
 t_BOOLEAN_AND= r'\&\&'
 t_COMMENT=r'\#'
@@ -130,6 +134,12 @@ def t_ELSEIF(t):
     return t
 def t_ELSE(t):
     r'else'
+    return t
+def t_ARRAY(t):
+    r'array'
+    return t
+def t_SORT(t):
+    r'sort'
     return t
 def t_WHILE(t):
     r'while'
