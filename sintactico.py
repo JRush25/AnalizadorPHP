@@ -32,7 +32,11 @@ def p_expresioncmp(p):
 def p_comparacionif(p):
     'comparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE'
 
+def p_comparacionif_else(p):
+    'comparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE'
 
+def p_comparacionif_elseif_else(p):
+    'comparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE'
 
 # Error rule for syntax errors
 def p_error(p):
