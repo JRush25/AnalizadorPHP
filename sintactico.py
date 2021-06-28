@@ -8,7 +8,6 @@ def p_sentencias(p):
     '''sentencias : asignacion
                     | comparacion
                     | funcion
-                    | comparacion
                     | impresion
                     | repeticion
     '''

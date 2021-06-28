@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ABSTRACT AND ASIGNACION BOOLEAN BOOLEAN_AND BOOLEAN_OR BREAK CADENA CASE CATCH CLASS COMMENT CONCAT_EQUAL CONST CONTINUE DECLARE DECREMENTO DEFAULT DIVIDE DIV_EQUAL DO DOUBLE_ARROW ECHO ELSE ELSEIF EXTENDS FIN FINAL FOR FUNCTION GLOBAL ID IF IGUAL INCLUDE INCREMENTO INICIO INSTANCEOF IS_NOT_EQUAL LLLAVE LPAREN MAYOR MAYORIGUAL MENOR MENORIGUAL MINUS MOD NUMBER OR PCOMA PLUS PRINT PRIVATE PROTECTED PUBLIC REF RLLAVE RPAREN TIMES TRY WHILEprograma : INICIO sentencias FINsentencias : asignacion\n                    | comparacionasignacion : ID ASIGNACION valor PCOMA\n                | ID REF ID PCOMAvalor : ID\n             | NUMBER\n             | CADENA\n             | BOOLEAN\n    opcomparacion : IGUAL\n                    | MAYOR\n                    | MENOR\n                    | MAYORIGUAL\n                    | MENORIGUAL\n    expcmp : valor opcomparacion valorcomparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE'
+_lr_signature = 'ABSTRACT AND ARRAY ASIGNACION BOOLEAN BOOLEAN_AND BOOLEAN_OR BREAK CADENA CASE CATCH CLASS COMA COMMENT CONCAT_EQUAL CONST CONTINUE DECLARE DECREMENTO DEFAULT DIVIDE DIV_EQUAL DO DOUBLE_ARROW ECHO ELSE ELSEIF EXTENDS FIN FINAL FOR FUNCTION GLOBAL ID IF IGUAL INCLUDE INCREMENTO INICIO INSTANCEOF IS_NOT_EQUAL LLLAVE LPAREN MAYOR MAYORIGUAL MENOR MENORIGUAL MINUS MOD NUMBER OR PCOMA PLUS PRINT PRIVATE PROTECTED PUBLIC REF RLLAVE RPAREN SORT TIMES TRY WHILEprograma : INICIO sentencias FINsentencias : asignacion\n                    | comparacion\n                    | funcion\n                    | impresion\n                    | repeticion\n    asignacion : ID ASIGNACION valor PCOMA\n                | ID REF ID PCOMA\n                | ID ASIGNACION array PCOMAvalor : ID\n             | NUMBER\n             | CADENA\n             | BOOLEAN\n    opcomparacion : IGUAL\n                    | MAYOR\n                    | MENOR\n                    | MAYORIGUAL\n                    | MENORIGUAL\n    expcmp : valor opcomparacion valorcomparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVEcomparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVEcomparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVEarray : ARRAY LPAREN valor DOUBLE_ARROW valor RPAREN\n            | ARRAY LPAREN valor RPARENcontenido : valor DOUBLE_ARROW valor\n                | contenido COMA valor DOUBLE_ARROW valorsort : SORT LPAREN ID RPAREN PCOMAfuncion : sortimpresion : ECHO ID PCOMA\n             | ECHO CADENA PCOMArepeticionrep : MAYOR\n                  | MENOR\n                  | MAYORIGUAL\n                  | MENORIGUAL\n  actualizar : INCREMENTO\n                | DECREMENTO\n  repeticion : FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE repeticion : WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE'
     
-_lr_action_items = {'INICIO':([0,],[2,]),'$end':([1,8,],[0,-1,]),'ID':([2,9,10,11,23,24,25,26,27,28,29,],[6,12,17,12,12,-10,-11,-12,-13,-14,6,]),'IF':([2,29,],[7,7,]),'FIN':([3,4,5,20,21,32,],[8,-2,-3,-4,-5,-16,]),'RLLAVE':([4,5,20,21,31,32,],[-2,-3,-4,-5,32,-16,]),'ASIGNACION':([6,],[9,]),'REF':([6,],[10,]),'LPAREN':([7,],[11,]),'NUMBER':([9,11,23,24,25,26,27,28,],[14,14,14,-10,-11,-12,-13,-14,]),'CADENA':([9,11,23,24,25,26,27,28,],[15,15,15,-10,-11,-12,-13,-14,]),'BOOLEAN':([9,11,23,24,25,26,27,28,],[16,16,16,-10,-11,-12,-13,-14,]),'PCOMA':([12,13,14,15,16,17,],[-6,20,-7,-8,-9,21,]),'IGUAL':([12,14,15,16,19,],[-6,-7,-8,-9,24,]),'MAYOR':([12,14,15,16,19,],[-6,-7,-8,-9,25,]),'MENOR':([12,14,15,16,19,],[-6,-7,-8,-9,26,]),'MAYORIGUAL':([12,14,15,16,19,],[-6,-7,-8,-9,27,]),'MENORIGUAL':([12,14,15,16,19,],[-6,-7,-8,-9,28,]),'RPAREN':([12,14,15,16,18,30,],[-6,-7,-8,-9,22,-15,]),'LLLAVE':([22,],[29,]),}
+_lr_action_items = {'INICIO':([0,],[2,]),'$end':([1,16,],[0,-1,]),'ID':([2,4,5,6,7,8,11,12,17,18,19,22,23,24,35,36,40,41,42,43,45,46,47,48,49,50,52,55,59,60,63,66,68,77,78,79,84,88,92,94,98,101,102,104,],[9,-2,-3,-4,-5,-6,-28,20,25,32,25,37,38,39,-29,-30,-7,-9,25,-8,25,-14,-15,-16,-17,-18,25,9,-27,25,67,-20,9,81,9,25,90,-21,9,-38,9,9,-37,-22,]),'IF':([2,55,68,78,92,98,101,],[10,10,10,10,10,10,10,]),'ECHO':([2,55,68,78,92,98,101,],[12,12,12,12,12,12,12,]),'FOR':([2,55,68,78,92,98,101,],[13,13,13,13,13,13,13,]),'WHILE':([2,55,68,78,92,98,101,],[14,14,14,14,14,14,14,]),'SORT':([2,55,68,78,92,98,101,],[15,15,15,15,15,15,15,]),'FIN':([3,4,5,6,7,8,11,35,36,40,41,43,59,66,88,94,102,104,],[16,-2,-3,-4,-5,-6,-28,-29,-30,-7,-9,-8,-27,-20,-21,-38,-37,-22,]),'RLLAVE':([4,5,6,7,8,11,35,36,40,41,43,59,62,66,82,88,91,94,95,100,102,103,104,],[-2,-3,-4,-5,-6,-28,-29,-30,-7,-9,-8,-27,66,-20,88,-21,94,-38,97,102,-37,104,-22,]),'ASIGNACION':([9,37,],[17,51,]),'REF':([9,],[18,]),'LPAREN':([10,13,14,15,31,71,],[19,22,23,24,42,79,]),'CADENA':([12,17,19,42,45,46,47,48,49,50,52,60,79,],[21,29,29,29,29,-14,-15,-16,-17,-18,29,29,29,]),'NUMBER':([17,19,42,45,46,47,48,49,50,51,52,60,72,73,74,75,76,79,],[28,28,28,28,-14,-15,-16,-17,-18,57,28,28,80,-31,-32,-33,-34,28,]),'BOOLEAN':([17,19,42,45,46,47,48,49,50,52,60,79,],[30,30,30,30,-14,-15,-16,-17,-18,30,30,30,]),'ARRAY':([17,],[31,]),'PCOMA':([20,21,25,26,27,28,29,30,32,53,57,61,69,80,85,86,87,],[35,36,-10,40,41,-11,-12,-13,43,59,63,-24,-23,84,91,-35,-36,]),'IGUAL':([25,28,29,30,34,38,],[-10,-11,-12,-13,46,46,]),'MAYOR':([25,28,29,30,34,38,67,],[-10,-11,-12,-13,47,47,73,]),'MENOR':([25,28,29,30,34,38,67,],[-10,-11,-12,-13,48,48,74,]),'MAYORIGUAL':([25,28,29,30,34,38,67,],[-10,-11,-12,-13,49,49,75,]),'MENORIGUAL':([25,28,29,30,34,38,67,],[-10,-11,-12,-13,50,50,76,]),'DOUBLE_ARROW':([25,28,29,30,54,],[-10,-11,-12,-13,60,]),'RPAREN':([25,28,29,30,33,39,54,56,58,65,83,86,87,93,],[-10,-11,-12,-13,44,53,61,-19,64,69,89,-35,-36,96,]),'LLLAVE':([44,64,70,89,96,99,],[55,68,78,92,98,101,]),'ELSE':([66,97,],[70,99,]),'ELSEIF':([66,],[71,]),'INCREMENTO':([81,90,],[86,86,]),'DECREMENTO':([81,90,],[87,87,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'programa':([0,],[1,]),'sentencias':([2,29,],[3,31,]),'asignacion':([2,29,],[4,4,]),'comparacion':([2,29,],[5,5,]),'valor':([9,11,23,],[13,19,30,]),'expcmp':([11,],[18,]),'opcomparacion':([19,],[23,]),}
+_lr_goto_items = {'programa':([0,],[1,]),'sentencias':([2,55,68,78,92,98,101,],[3,62,77,82,95,100,103,]),'asignacion':([2,55,68,78,92,98,101,],[4,4,4,4,4,4,4,]),'comparacion':([2,55,68,78,92,98,101,],[5,5,5,5,5,5,5,]),'funcion':([2,55,68,78,92,98,101,],[6,6,6,6,6,6,6,]),'impresion':([2,55,68,78,92,98,101,],[7,7,7,7,7,7,7,]),'repeticion':([2,55,68,78,92,98,101,],[8,8,8,8,8,8,8,]),'sort':([2,55,68,78,92,98,101,],[11,11,11,11,11,11,11,]),'valor':([17,19,42,45,52,60,79,],[26,34,54,56,58,65,34,]),'array':([17,],[27,]),'expcmp':([19,79,],[33,83,]),'opcomparacion':([34,38,],[45,52,]),'repeticionrep':([67,],[72,]),'actualizar':([81,90,],[85,93,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -30,17 +30,39 @@ _lr_productions = [
   ('programa -> INICIO sentencias FIN','programa',3,'p_programa','sintactico.py',5),
   ('sentencias -> asignacion','sentencias',1,'p_sentencias','sintactico.py',8),
   ('sentencias -> comparacion','sentencias',1,'p_sentencias','sintactico.py',9),
-  ('asignacion -> ID ASIGNACION valor PCOMA','asignacion',4,'p_asignacion','sintactico.py',12),
-  ('asignacion -> ID REF ID PCOMA','asignacion',4,'p_asignacion','sintactico.py',13),
-  ('valor -> ID','valor',1,'p_valor','sintactico.py',15),
-  ('valor -> NUMBER','valor',1,'p_valor','sintactico.py',16),
-  ('valor -> CADENA','valor',1,'p_valor','sintactico.py',17),
-  ('valor -> BOOLEAN','valor',1,'p_valor','sintactico.py',18),
-  ('opcomparacion -> IGUAL','opcomparacion',1,'p_opcomparacion','sintactico.py',22),
-  ('opcomparacion -> MAYOR','opcomparacion',1,'p_opcomparacion','sintactico.py',23),
-  ('opcomparacion -> MENOR','opcomparacion',1,'p_opcomparacion','sintactico.py',24),
-  ('opcomparacion -> MAYORIGUAL','opcomparacion',1,'p_opcomparacion','sintactico.py',25),
-  ('opcomparacion -> MENORIGUAL','opcomparacion',1,'p_opcomparacion','sintactico.py',26),
-  ('expcmp -> valor opcomparacion valor','expcmp',3,'p_expresioncmp','sintactico.py',30),
-  ('comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE','comparacion',7,'p_comparacionif','sintactico.py',33),
+  ('sentencias -> funcion','sentencias',1,'p_sentencias','sintactico.py',10),
+  ('sentencias -> impresion','sentencias',1,'p_sentencias','sintactico.py',11),
+  ('sentencias -> repeticion','sentencias',1,'p_sentencias','sintactico.py',12),
+  ('asignacion -> ID ASIGNACION valor PCOMA','asignacion',4,'p_asignacion','sintactico.py',16),
+  ('asignacion -> ID REF ID PCOMA','asignacion',4,'p_asignacion','sintactico.py',17),
+  ('asignacion -> ID ASIGNACION array PCOMA','asignacion',4,'p_asignacion','sintactico.py',18),
+  ('valor -> ID','valor',1,'p_valor','sintactico.py',20),
+  ('valor -> NUMBER','valor',1,'p_valor','sintactico.py',21),
+  ('valor -> CADENA','valor',1,'p_valor','sintactico.py',22),
+  ('valor -> BOOLEAN','valor',1,'p_valor','sintactico.py',23),
+  ('opcomparacion -> IGUAL','opcomparacion',1,'p_opcomparacion','sintactico.py',27),
+  ('opcomparacion -> MAYOR','opcomparacion',1,'p_opcomparacion','sintactico.py',28),
+  ('opcomparacion -> MENOR','opcomparacion',1,'p_opcomparacion','sintactico.py',29),
+  ('opcomparacion -> MAYORIGUAL','opcomparacion',1,'p_opcomparacion','sintactico.py',30),
+  ('opcomparacion -> MENORIGUAL','opcomparacion',1,'p_opcomparacion','sintactico.py',31),
+  ('expcmp -> valor opcomparacion valor','expcmp',3,'p_expresioncmp','sintactico.py',35),
+  ('comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE','comparacion',7,'p_comparacionif','sintactico.py',38),
+  ('comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE','comparacion',11,'p_comparacionif_else','sintactico.py',41),
+  ('comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE','comparacion',18,'p_comparacionif_elseif_else','sintactico.py',44),
+  ('array -> ARRAY LPAREN valor DOUBLE_ARROW valor RPAREN','array',6,'p_array','sintactico.py',47),
+  ('array -> ARRAY LPAREN valor RPAREN','array',4,'p_array','sintactico.py',48),
+  ('contenido -> valor DOUBLE_ARROW valor','contenido',3,'p_contenido_array','sintactico.py',51),
+  ('contenido -> contenido COMA valor DOUBLE_ARROW valor','contenido',5,'p_contenido_array','sintactico.py',52),
+  ('sort -> SORT LPAREN ID RPAREN PCOMA','sort',5,'p_sort','sintactico.py',55),
+  ('funcion -> sort','funcion',1,'p_funcion','sintactico.py',58),
+  ('impresion -> ECHO ID PCOMA','impresion',3,'p_impresion','sintactico.py',60),
+  ('impresion -> ECHO CADENA PCOMA','impresion',3,'p_impresion','sintactico.py',61),
+  ('repeticionrep -> MAYOR','repeticionrep',1,'p_repeticioncompfor','sintactico.py',64),
+  ('repeticionrep -> MENOR','repeticionrep',1,'p_repeticioncompfor','sintactico.py',65),
+  ('repeticionrep -> MAYORIGUAL','repeticionrep',1,'p_repeticioncompfor','sintactico.py',66),
+  ('repeticionrep -> MENORIGUAL','repeticionrep',1,'p_repeticioncompfor','sintactico.py',67),
+  ('actualizar -> INCREMENTO','actualizar',1,'p_actualizar','sintactico.py',71),
+  ('actualizar -> DECREMENTO','actualizar',1,'p_actualizar','sintactico.py',72),
+  ('repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE','repeticion',16,'p_repeticionfor','sintactico.py',76),
+  ('repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE','repeticion',12,'p_repeticionwhile','sintactico.py',80),
 ]
