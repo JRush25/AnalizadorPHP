@@ -8,7 +8,7 @@ def p_sentencias(p):
     '''sentencias : asignacion
                     | comparacion
                     | impresion
-                    | estructura
+                    | repeticion
     '''
 
 def p_asignacion(p):
@@ -42,8 +42,25 @@ def p_comparacionif_elseif_else(p):
     'comparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE'
 
 def p_impresion(p):
-  '''impresion : ECHO ID PCOMA
-              | ECHO CADENA PCOMA'''
+ '''impresion : ECHO ID PCOMA
+             | ECHO CADENA PCOMA'''
+
+def p_repeticioncomp(p):
+  '''repeticionrep : MAYOR
+                  | MENOR
+                  | MAYORIGUAL
+                  | MENORIGUAL
+  '''
+
+def p_actualizar(p):
+  '''actualizar : INCREMENTO
+                | DECREMENTO
+                '''
+def p_repeticionfor(p):
+  'repeticion : FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE '
+
+
+
 
 
 
