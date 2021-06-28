@@ -5,7 +5,8 @@ def p_programa(p):
     'programa : INICIO sentencias FIN'
     pass
 def p_sentencias(p):
-    'sentencias : asignacion'
+    '''sentencias : asignacion
+                    | comparacion'''
 
 def p_asignacion(p):
     '''asignacion : ID ASIGNACION valor PCOMA
@@ -16,6 +17,22 @@ def p_valor(p):
              | CADENA
              | BOOLEAN
     '''
+
+def p_opcomparacion(p):
+    '''opcomparacion : IGUAL
+                    | MAYOR
+                    | MENOR
+                    | MAYORIGUAL
+                    | MENORIGUAL
+    '''
+
+def p_expresioncmp(p):
+    'expcmp : valor opcomparacion valor'
+
+def p_comparacionif(p):
+    'comparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE'
+
+
 
 # Error rule for syntax errors
 def p_error(p):

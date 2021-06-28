@@ -58,6 +58,9 @@ tokens = (
     'PCOMA',
     'LLLAVE',
     'RLLAVE',
+    'IGUAL',
+    'MENORIGUAL',
+    'MAYORIGUAL',
     'INCREMENTO',
     'BOOLEAN_OR', #David Cevallos Inicio
     'BOOLEAN_AND',
@@ -88,6 +91,9 @@ t_FIN = r'\?>'
 t_PCOMA = r';'
 t_LLLAVE = r'\{'
 t_RLLAVE = r'\}'
+t_IGUAL = r'=='
+t_MENORIGUAL = r'<='
+t_MAYORIGUAL = r'>='
 t_BOOLEAN_OR= r'\|\|'  #David Cevallos Inicio
 t_BOOLEAN_AND= r'\&\&'
 t_COMMENT=r'\#'
@@ -100,7 +106,7 @@ t_DOUBLE_ARROW= r'\=\>'  #David Cevallos Fin
 
 #Joselyne Torres (inicio)
 def t_ID(t):
-    r'\$[a-zA-Z_]\w+'
+    r'\$[a-zA-Z_]\w*'
     t.type = reserved.get(t.value, 'ID')  # Check for reserved words
     return t
 # A regular expression rule with some action code
@@ -211,7 +217,7 @@ def getTokens(lexer):
         print(tok)
 # Build the lexer
 lexer = lex.lex()
-"""
+'''
 linea=" "
 while linea!="":
     linea=input(">>")
@@ -219,6 +225,4 @@ while linea!="":
     getTokens(lexer)
 # Tokenize
 print("Succesfull")
-
-
-"""
+'''
