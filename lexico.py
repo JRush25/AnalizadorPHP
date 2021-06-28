@@ -15,7 +15,11 @@ reserved = {
     'abstract' : 'ABSTRACT',
     'declare' : 'DECLARE',
     'echo' : 'ECHO',
-    'const' : 'CONST',
+    'public' :'PUBLIC',
+    'private' : 'PRIVATE',
+    'protected': 'PROTECTED',
+    'print': 'PRINT',
+    'const' : 'CONST', #Joselyne Torres (fin)
     'case' : 'CASE', #David Cevallos Inicio
     'break' : 'BREAK',
     'class' : 'CLASS',
@@ -29,7 +33,7 @@ reserved = {
   'instanceof' : 'INSTANCEOF'#David Cevallos fin
 
 
-#Joselyne Torres (fin)
+
 
 }
 tokens = (
@@ -46,8 +50,14 @@ tokens = (
     'MENOR',
     'MAYOR',
     'ASIGNACION',
+    'REF',
     'CADENA',
     'BOOLEAN',
+    'INICIO',
+    'FIN',
+    'PCOMA',
+    'LLLAVE',
+    'RLLAVE',
     'INCREMENTO',
     'BOOLEAN_OR', #David Cevallos Inicio
     'BOOLEAN_AND',
@@ -71,7 +81,13 @@ t_MOD = r'%'
 t_MENOR = r'<'
 t_MAYOR = r'>'
 t_ASIGNACION = r'='
+t_REF = r'=\&'
 t_INCREMENTO = r'\+\+'
+t_INICIO = r'<\?php'
+t_FIN = r'\?>'
+t_PCOMA = r';'
+t_LLLAVE = r'\{'
+t_RLLAVE = r'\}'
 t_BOOLEAN_OR= r'\|\|'  #David Cevallos Inicio
 t_BOOLEAN_AND= r'\&\&'
 t_COMMENT=r'\#'
@@ -195,6 +211,7 @@ def getTokens(lexer):
         print(tok)
 # Build the lexer
 lexer = lex.lex()
+"""
 linea=" "
 while linea!="":
     linea=input(">>")
@@ -204,3 +221,4 @@ while linea!="":
 print("Succesfull")
 
 
+"""

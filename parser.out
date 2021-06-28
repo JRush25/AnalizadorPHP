@@ -1,0 +1,271 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ABSTRACT
+    AND
+    BOOLEAN_AND
+    BOOLEAN_OR
+    BREAK
+    CASE
+    CATCH
+    CLASS
+    COMMENT
+    CONCAT_EQUAL
+    CONST
+    CONTINUE
+    DECLARE
+    DECREMENTO
+    DEFAULT
+    DIVIDE
+    DIV_EQUAL
+    DO
+    DOUBLE_ARROW
+    ECHO
+    ELSE
+    ELSEIF
+    EXTENDS
+    FINAL
+    FOR
+    FUNCTION
+    GLOBAL
+    IF
+    INCLUDE
+    INCREMENTO
+    INSTANCEOF
+    IS_NOT_EQUAL
+    LLLAVE
+    LPAREN
+    MAYOR
+    MENOR
+    MINUS
+    MOD
+    OR
+    PLUS
+    PRINT
+    PRIVATE
+    PROTECTED
+    PUBLIC
+    RLLAVE
+    RPAREN
+    TIMES
+    TRY
+    WHILE
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> INICIO sentencias FIN
+Rule 2     sentencias -> asignacion
+Rule 3     asignacion -> ID ASIGNACION valor PCOMA
+Rule 4     asignacion -> ID REF ID PCOMA
+Rule 5     valor -> ID
+Rule 6     valor -> NUMBER
+Rule 7     valor -> CADENA
+Rule 8     valor -> BOOLEAN
+
+Terminals, with rules where they appear
+
+ABSTRACT             : 
+AND                  : 
+ASIGNACION           : 3
+BOOLEAN              : 8
+BOOLEAN_AND          : 
+BOOLEAN_OR           : 
+BREAK                : 
+CADENA               : 7
+CASE                 : 
+CATCH                : 
+CLASS                : 
+COMMENT              : 
+CONCAT_EQUAL         : 
+CONST                : 
+CONTINUE             : 
+DECLARE              : 
+DECREMENTO           : 
+DEFAULT              : 
+DIVIDE               : 
+DIV_EQUAL            : 
+DO                   : 
+DOUBLE_ARROW         : 
+ECHO                 : 
+ELSE                 : 
+ELSEIF               : 
+EXTENDS              : 
+FIN                  : 1
+FINAL                : 
+FOR                  : 
+FUNCTION             : 
+GLOBAL               : 
+ID                   : 3 4 4 5
+IF                   : 
+INCLUDE              : 
+INCREMENTO           : 
+INICIO               : 1
+INSTANCEOF           : 
+IS_NOT_EQUAL         : 
+LLLAVE               : 
+LPAREN               : 
+MAYOR                : 
+MENOR                : 
+MINUS                : 
+MOD                  : 
+NUMBER               : 6
+OR                   : 
+PCOMA                : 3 4
+PLUS                 : 
+PRINT                : 
+PRIVATE              : 
+PROTECTED            : 
+PUBLIC               : 
+REF                  : 4
+RLLAVE               : 
+RPAREN               : 
+TIMES                : 
+TRY                  : 
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+asignacion           : 2
+programa             : 0
+sentencias           : 1
+valor                : 3
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . INICIO sentencias FIN
+
+    INICIO          shift and go to state 2
+
+    programa                       shift and go to state 1
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> INICIO . sentencias FIN
+    (2) sentencias -> . asignacion
+    (3) asignacion -> . ID ASIGNACION valor PCOMA
+    (4) asignacion -> . ID REF ID PCOMA
+
+    ID              shift and go to state 5
+
+    sentencias                     shift and go to state 3
+    asignacion                     shift and go to state 4
+
+state 3
+
+    (1) programa -> INICIO sentencias . FIN
+
+    FIN             shift and go to state 6
+
+
+state 4
+
+    (2) sentencias -> asignacion .
+
+    FIN             reduce using rule 2 (sentencias -> asignacion .)
+
+
+state 5
+
+    (3) asignacion -> ID . ASIGNACION valor PCOMA
+    (4) asignacion -> ID . REF ID PCOMA
+
+    ASIGNACION      shift and go to state 7
+    REF             shift and go to state 8
+
+
+state 6
+
+    (1) programa -> INICIO sentencias FIN .
+
+    $end            reduce using rule 1 (programa -> INICIO sentencias FIN .)
+
+
+state 7
+
+    (3) asignacion -> ID ASIGNACION . valor PCOMA
+    (5) valor -> . ID
+    (6) valor -> . NUMBER
+    (7) valor -> . CADENA
+    (8) valor -> . BOOLEAN
+
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 11
+    CADENA          shift and go to state 12
+    BOOLEAN         shift and go to state 13
+
+    valor                          shift and go to state 10
+
+state 8
+
+    (4) asignacion -> ID REF . ID PCOMA
+
+    ID              shift and go to state 14
+
+
+state 9
+
+    (5) valor -> ID .
+
+    PCOMA           reduce using rule 5 (valor -> ID .)
+
+
+state 10
+
+    (3) asignacion -> ID ASIGNACION valor . PCOMA
+
+    PCOMA           shift and go to state 15
+
+
+state 11
+
+    (6) valor -> NUMBER .
+
+    PCOMA           reduce using rule 6 (valor -> NUMBER .)
+
+
+state 12
+
+    (7) valor -> CADENA .
+
+    PCOMA           reduce using rule 7 (valor -> CADENA .)
+
+
+state 13
+
+    (8) valor -> BOOLEAN .
+
+    PCOMA           reduce using rule 8 (valor -> BOOLEAN .)
+
+
+state 14
+
+    (4) asignacion -> ID REF ID . PCOMA
+
+    PCOMA           shift and go to state 16
+
+
+state 15
+
+    (3) asignacion -> ID ASIGNACION valor PCOMA .
+
+    FIN             reduce using rule 3 (asignacion -> ID ASIGNACION valor PCOMA .)
+
+
+state 16
+
+    (4) asignacion -> ID REF ID PCOMA .
+
+    FIN             reduce using rule 4 (asignacion -> ID REF ID PCOMA .)
+
