@@ -21,9 +21,6 @@ Unused terminals:
     DIV_EQUAL
     DO
     DOUBLE_ARROW
-    ECHO
-    ELSE
-    ELSEIF
     EXTENDS
     FINAL
     FOR
@@ -51,30 +48,35 @@ Rule 0     S' -> programa
 Rule 1     programa -> INICIO sentencias FIN
 Rule 2     sentencias -> asignacion
 Rule 3     sentencias -> comparacion
-Rule 4     asignacion -> ID ASIGNACION valor PCOMA
-Rule 5     asignacion -> ID REF ID PCOMA
-Rule 6     valor -> ID
-Rule 7     valor -> NUMBER
-Rule 8     valor -> CADENA
-Rule 9     valor -> BOOLEAN
-Rule 10    opcomparacion -> IGUAL
-Rule 11    opcomparacion -> MAYOR
-Rule 12    opcomparacion -> MENOR
-Rule 13    opcomparacion -> MAYORIGUAL
-Rule 14    opcomparacion -> MENORIGUAL
-Rule 15    expcmp -> valor opcomparacion valor
-Rule 16    comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE
+Rule 4     sentencias -> impresion
+Rule 5     asignacion -> ID ASIGNACION valor PCOMA
+Rule 6     asignacion -> ID REF ID PCOMA
+Rule 7     valor -> ID
+Rule 8     valor -> NUMBER
+Rule 9     valor -> CADENA
+Rule 10    valor -> BOOLEAN
+Rule 11    opcomparacion -> IGUAL
+Rule 12    opcomparacion -> MAYOR
+Rule 13    opcomparacion -> MENOR
+Rule 14    opcomparacion -> MAYORIGUAL
+Rule 15    opcomparacion -> MENORIGUAL
+Rule 16    expcmp -> valor opcomparacion valor
+Rule 17    comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE
+Rule 18    comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+Rule 19    comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+Rule 20    impresion -> ECHO ID
+Rule 21    impresion -> ECHO CADENA
 
 Terminals, with rules where they appear
 
 ABSTRACT             : 
 AND                  : 
-ASIGNACION           : 4
-BOOLEAN              : 9
+ASIGNACION           : 5
+BOOLEAN              : 10
 BOOLEAN_AND          : 
 BOOLEAN_OR           : 
 BREAK                : 
-CADENA               : 8
+CADENA               : 9 21
 CASE                 : 
 CATCH                : 
 CLASS                : 
@@ -89,42 +91,42 @@ DIVIDE               :
 DIV_EQUAL            : 
 DO                   : 
 DOUBLE_ARROW         : 
-ECHO                 : 
-ELSE                 : 
-ELSEIF               : 
+ECHO                 : 20 21
+ELSE                 : 18 19
+ELSEIF               : 19
 EXTENDS              : 
 FIN                  : 1
 FINAL                : 
 FOR                  : 
 FUNCTION             : 
 GLOBAL               : 
-ID                   : 4 5 5 6
-IF                   : 16
-IGUAL                : 10
+ID                   : 5 6 6 7 20
+IF                   : 17 18 19
+IGUAL                : 11
 INCLUDE              : 
 INCREMENTO           : 
 INICIO               : 1
 INSTANCEOF           : 
 IS_NOT_EQUAL         : 
-LLLAVE               : 16
-LPAREN               : 16
-MAYOR                : 11
-MAYORIGUAL           : 13
-MENOR                : 12
-MENORIGUAL           : 14
+LLLAVE               : 17 18 18 19 19 19
+LPAREN               : 17 18 19 19
+MAYOR                : 12
+MAYORIGUAL           : 14
+MENOR                : 13
+MENORIGUAL           : 15
 MINUS                : 
 MOD                  : 
-NUMBER               : 7
+NUMBER               : 8
 OR                   : 
-PCOMA                : 4 5
+PCOMA                : 5 6
 PLUS                 : 
 PRINT                : 
 PRIVATE              : 
 PROTECTED            : 
 PUBLIC               : 
-REF                  : 5
-RLLAVE               : 16
-RPAREN               : 16
+REF                  : 6
+RLLAVE               : 17 18 18 19 19 19
+RPAREN               : 17 18 19 19
 TIMES                : 
 TRY                  : 
 WHILE                : 
@@ -134,11 +136,12 @@ Nonterminals, with rules where they appear
 
 asignacion           : 2
 comparacion          : 3
-expcmp               : 16
-opcomparacion        : 15
+expcmp               : 17 18 19 19
+impresion            : 4
+opcomparacion        : 16
 programa             : 0
-sentencias           : 1 16
-valor                : 4 15 15
+sentencias           : 1 17 18 18 19 19 19
+valor                : 5 16 16
 
 Parsing method: LALR
 
@@ -162,22 +165,29 @@ state 2
     (1) programa -> INICIO . sentencias FIN
     (2) sentencias -> . asignacion
     (3) sentencias -> . comparacion
-    (4) asignacion -> . ID ASIGNACION valor PCOMA
-    (5) asignacion -> . ID REF ID PCOMA
-    (16) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE
+    (4) sentencias -> . impresion
+    (5) asignacion -> . ID ASIGNACION valor PCOMA
+    (6) asignacion -> . ID REF ID PCOMA
+    (17) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE
+    (18) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (19) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (20) impresion -> . ECHO ID
+    (21) impresion -> . ECHO CADENA
 
-    ID              shift and go to state 6
-    IF              shift and go to state 7
+    ID              shift and go to state 7
+    IF              shift and go to state 8
+    ECHO            shift and go to state 9
 
     sentencias                     shift and go to state 3
     asignacion                     shift and go to state 4
     comparacion                    shift and go to state 5
+    impresion                      shift and go to state 6
 
 state 3
 
     (1) programa -> INICIO sentencias . FIN
 
-    FIN             shift and go to state 8
+    FIN             shift and go to state 10
 
 
 state 4
@@ -198,278 +208,499 @@ state 5
 
 state 6
 
-    (4) asignacion -> ID . ASIGNACION valor PCOMA
-    (5) asignacion -> ID . REF ID PCOMA
+    (4) sentencias -> impresion .
 
-    ASIGNACION      shift and go to state 9
-    REF             shift and go to state 10
+    FIN             reduce using rule 4 (sentencias -> impresion .)
+    RLLAVE          reduce using rule 4 (sentencias -> impresion .)
 
 
 state 7
 
-    (16) comparacion -> IF . LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE
+    (5) asignacion -> ID . ASIGNACION valor PCOMA
+    (6) asignacion -> ID . REF ID PCOMA
 
-    LPAREN          shift and go to state 11
+    ASIGNACION      shift and go to state 11
+    REF             shift and go to state 12
 
 
 state 8
+
+    (17) comparacion -> IF . LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE
+    (18) comparacion -> IF . LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (19) comparacion -> IF . LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+
+    LPAREN          shift and go to state 13
+
+
+state 9
+
+    (20) impresion -> ECHO . ID
+    (21) impresion -> ECHO . CADENA
+
+    ID              shift and go to state 14
+    CADENA          shift and go to state 15
+
+
+state 10
 
     (1) programa -> INICIO sentencias FIN .
 
     $end            reduce using rule 1 (programa -> INICIO sentencias FIN .)
 
 
-state 9
-
-    (4) asignacion -> ID ASIGNACION . valor PCOMA
-    (6) valor -> . ID
-    (7) valor -> . NUMBER
-    (8) valor -> . CADENA
-    (9) valor -> . BOOLEAN
-
-    ID              shift and go to state 12
-    NUMBER          shift and go to state 14
-    CADENA          shift and go to state 15
-    BOOLEAN         shift and go to state 16
-
-    valor                          shift and go to state 13
-
-state 10
-
-    (5) asignacion -> ID REF . ID PCOMA
-
-    ID              shift and go to state 17
-
-
 state 11
 
-    (16) comparacion -> IF LPAREN . expcmp RPAREN LLLAVE sentencias RLLAVE
-    (15) expcmp -> . valor opcomparacion valor
-    (6) valor -> . ID
-    (7) valor -> . NUMBER
-    (8) valor -> . CADENA
-    (9) valor -> . BOOLEAN
+    (5) asignacion -> ID ASIGNACION . valor PCOMA
+    (7) valor -> . ID
+    (8) valor -> . NUMBER
+    (9) valor -> . CADENA
+    (10) valor -> . BOOLEAN
 
-    ID              shift and go to state 12
-    NUMBER          shift and go to state 14
-    CADENA          shift and go to state 15
-    BOOLEAN         shift and go to state 16
+    ID              shift and go to state 16
+    NUMBER          shift and go to state 18
+    CADENA          shift and go to state 19
+    BOOLEAN         shift and go to state 20
 
-    expcmp                         shift and go to state 18
-    valor                          shift and go to state 19
+    valor                          shift and go to state 17
 
 state 12
 
-    (6) valor -> ID .
+    (6) asignacion -> ID REF . ID PCOMA
 
-    PCOMA           reduce using rule 6 (valor -> ID .)
-    IGUAL           reduce using rule 6 (valor -> ID .)
-    MAYOR           reduce using rule 6 (valor -> ID .)
-    MENOR           reduce using rule 6 (valor -> ID .)
-    MAYORIGUAL      reduce using rule 6 (valor -> ID .)
-    MENORIGUAL      reduce using rule 6 (valor -> ID .)
-    RPAREN          reduce using rule 6 (valor -> ID .)
+    ID              shift and go to state 21
 
 
 state 13
 
-    (4) asignacion -> ID ASIGNACION valor . PCOMA
+    (17) comparacion -> IF LPAREN . expcmp RPAREN LLLAVE sentencias RLLAVE
+    (18) comparacion -> IF LPAREN . expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (19) comparacion -> IF LPAREN . expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (16) expcmp -> . valor opcomparacion valor
+    (7) valor -> . ID
+    (8) valor -> . NUMBER
+    (9) valor -> . CADENA
+    (10) valor -> . BOOLEAN
 
-    PCOMA           shift and go to state 20
+    ID              shift and go to state 16
+    NUMBER          shift and go to state 18
+    CADENA          shift and go to state 19
+    BOOLEAN         shift and go to state 20
 
+    expcmp                         shift and go to state 22
+    valor                          shift and go to state 23
 
 state 14
 
-    (7) valor -> NUMBER .
+    (20) impresion -> ECHO ID .
 
-    PCOMA           reduce using rule 7 (valor -> NUMBER .)
-    IGUAL           reduce using rule 7 (valor -> NUMBER .)
-    MAYOR           reduce using rule 7 (valor -> NUMBER .)
-    MENOR           reduce using rule 7 (valor -> NUMBER .)
-    MAYORIGUAL      reduce using rule 7 (valor -> NUMBER .)
-    MENORIGUAL      reduce using rule 7 (valor -> NUMBER .)
-    RPAREN          reduce using rule 7 (valor -> NUMBER .)
+    FIN             reduce using rule 20 (impresion -> ECHO ID .)
+    RLLAVE          reduce using rule 20 (impresion -> ECHO ID .)
 
 
 state 15
 
-    (8) valor -> CADENA .
+    (21) impresion -> ECHO CADENA .
 
-    PCOMA           reduce using rule 8 (valor -> CADENA .)
-    IGUAL           reduce using rule 8 (valor -> CADENA .)
-    MAYOR           reduce using rule 8 (valor -> CADENA .)
-    MENOR           reduce using rule 8 (valor -> CADENA .)
-    MAYORIGUAL      reduce using rule 8 (valor -> CADENA .)
-    MENORIGUAL      reduce using rule 8 (valor -> CADENA .)
-    RPAREN          reduce using rule 8 (valor -> CADENA .)
+    FIN             reduce using rule 21 (impresion -> ECHO CADENA .)
+    RLLAVE          reduce using rule 21 (impresion -> ECHO CADENA .)
 
 
 state 16
 
-    (9) valor -> BOOLEAN .
+    (7) valor -> ID .
 
-    PCOMA           reduce using rule 9 (valor -> BOOLEAN .)
-    IGUAL           reduce using rule 9 (valor -> BOOLEAN .)
-    MAYOR           reduce using rule 9 (valor -> BOOLEAN .)
-    MENOR           reduce using rule 9 (valor -> BOOLEAN .)
-    MAYORIGUAL      reduce using rule 9 (valor -> BOOLEAN .)
-    MENORIGUAL      reduce using rule 9 (valor -> BOOLEAN .)
-    RPAREN          reduce using rule 9 (valor -> BOOLEAN .)
+    PCOMA           reduce using rule 7 (valor -> ID .)
+    IGUAL           reduce using rule 7 (valor -> ID .)
+    MAYOR           reduce using rule 7 (valor -> ID .)
+    MENOR           reduce using rule 7 (valor -> ID .)
+    MAYORIGUAL      reduce using rule 7 (valor -> ID .)
+    MENORIGUAL      reduce using rule 7 (valor -> ID .)
+    RPAREN          reduce using rule 7 (valor -> ID .)
 
 
 state 17
 
-    (5) asignacion -> ID REF ID . PCOMA
+    (5) asignacion -> ID ASIGNACION valor . PCOMA
 
-    PCOMA           shift and go to state 21
+    PCOMA           shift and go to state 24
 
 
 state 18
 
-    (16) comparacion -> IF LPAREN expcmp . RPAREN LLLAVE sentencias RLLAVE
+    (8) valor -> NUMBER .
 
-    RPAREN          shift and go to state 22
+    PCOMA           reduce using rule 8 (valor -> NUMBER .)
+    IGUAL           reduce using rule 8 (valor -> NUMBER .)
+    MAYOR           reduce using rule 8 (valor -> NUMBER .)
+    MENOR           reduce using rule 8 (valor -> NUMBER .)
+    MAYORIGUAL      reduce using rule 8 (valor -> NUMBER .)
+    MENORIGUAL      reduce using rule 8 (valor -> NUMBER .)
+    RPAREN          reduce using rule 8 (valor -> NUMBER .)
 
 
 state 19
 
-    (15) expcmp -> valor . opcomparacion valor
-    (10) opcomparacion -> . IGUAL
-    (11) opcomparacion -> . MAYOR
-    (12) opcomparacion -> . MENOR
-    (13) opcomparacion -> . MAYORIGUAL
-    (14) opcomparacion -> . MENORIGUAL
+    (9) valor -> CADENA .
 
-    IGUAL           shift and go to state 24
-    MAYOR           shift and go to state 25
-    MENOR           shift and go to state 26
-    MAYORIGUAL      shift and go to state 27
-    MENORIGUAL      shift and go to state 28
+    PCOMA           reduce using rule 9 (valor -> CADENA .)
+    IGUAL           reduce using rule 9 (valor -> CADENA .)
+    MAYOR           reduce using rule 9 (valor -> CADENA .)
+    MENOR           reduce using rule 9 (valor -> CADENA .)
+    MAYORIGUAL      reduce using rule 9 (valor -> CADENA .)
+    MENORIGUAL      reduce using rule 9 (valor -> CADENA .)
+    RPAREN          reduce using rule 9 (valor -> CADENA .)
 
-    opcomparacion                  shift and go to state 23
 
 state 20
 
-    (4) asignacion -> ID ASIGNACION valor PCOMA .
+    (10) valor -> BOOLEAN .
 
-    FIN             reduce using rule 4 (asignacion -> ID ASIGNACION valor PCOMA .)
-    RLLAVE          reduce using rule 4 (asignacion -> ID ASIGNACION valor PCOMA .)
+    PCOMA           reduce using rule 10 (valor -> BOOLEAN .)
+    IGUAL           reduce using rule 10 (valor -> BOOLEAN .)
+    MAYOR           reduce using rule 10 (valor -> BOOLEAN .)
+    MENOR           reduce using rule 10 (valor -> BOOLEAN .)
+    MAYORIGUAL      reduce using rule 10 (valor -> BOOLEAN .)
+    MENORIGUAL      reduce using rule 10 (valor -> BOOLEAN .)
+    RPAREN          reduce using rule 10 (valor -> BOOLEAN .)
 
 
 state 21
 
-    (5) asignacion -> ID REF ID PCOMA .
+    (6) asignacion -> ID REF ID . PCOMA
 
-    FIN             reduce using rule 5 (asignacion -> ID REF ID PCOMA .)
-    RLLAVE          reduce using rule 5 (asignacion -> ID REF ID PCOMA .)
+    PCOMA           shift and go to state 25
 
 
 state 22
 
-    (16) comparacion -> IF LPAREN expcmp RPAREN . LLLAVE sentencias RLLAVE
+    (17) comparacion -> IF LPAREN expcmp . RPAREN LLLAVE sentencias RLLAVE
+    (18) comparacion -> IF LPAREN expcmp . RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (19) comparacion -> IF LPAREN expcmp . RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
 
-    LLLAVE          shift and go to state 29
+    RPAREN          shift and go to state 26
 
 
 state 23
 
-    (15) expcmp -> valor opcomparacion . valor
-    (6) valor -> . ID
-    (7) valor -> . NUMBER
-    (8) valor -> . CADENA
-    (9) valor -> . BOOLEAN
+    (16) expcmp -> valor . opcomparacion valor
+    (11) opcomparacion -> . IGUAL
+    (12) opcomparacion -> . MAYOR
+    (13) opcomparacion -> . MENOR
+    (14) opcomparacion -> . MAYORIGUAL
+    (15) opcomparacion -> . MENORIGUAL
 
-    ID              shift and go to state 12
-    NUMBER          shift and go to state 14
-    CADENA          shift and go to state 15
-    BOOLEAN         shift and go to state 16
+    IGUAL           shift and go to state 28
+    MAYOR           shift and go to state 29
+    MENOR           shift and go to state 30
+    MAYORIGUAL      shift and go to state 31
+    MENORIGUAL      shift and go to state 32
 
-    valor                          shift and go to state 30
+    opcomparacion                  shift and go to state 27
 
 state 24
 
-    (10) opcomparacion -> IGUAL .
+    (5) asignacion -> ID ASIGNACION valor PCOMA .
 
-    ID              reduce using rule 10 (opcomparacion -> IGUAL .)
-    NUMBER          reduce using rule 10 (opcomparacion -> IGUAL .)
-    CADENA          reduce using rule 10 (opcomparacion -> IGUAL .)
-    BOOLEAN         reduce using rule 10 (opcomparacion -> IGUAL .)
+    FIN             reduce using rule 5 (asignacion -> ID ASIGNACION valor PCOMA .)
+    RLLAVE          reduce using rule 5 (asignacion -> ID ASIGNACION valor PCOMA .)
 
 
 state 25
 
-    (11) opcomparacion -> MAYOR .
+    (6) asignacion -> ID REF ID PCOMA .
 
-    ID              reduce using rule 11 (opcomparacion -> MAYOR .)
-    NUMBER          reduce using rule 11 (opcomparacion -> MAYOR .)
-    CADENA          reduce using rule 11 (opcomparacion -> MAYOR .)
-    BOOLEAN         reduce using rule 11 (opcomparacion -> MAYOR .)
+    FIN             reduce using rule 6 (asignacion -> ID REF ID PCOMA .)
+    RLLAVE          reduce using rule 6 (asignacion -> ID REF ID PCOMA .)
 
 
 state 26
 
-    (12) opcomparacion -> MENOR .
+    (17) comparacion -> IF LPAREN expcmp RPAREN . LLLAVE sentencias RLLAVE
+    (18) comparacion -> IF LPAREN expcmp RPAREN . LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (19) comparacion -> IF LPAREN expcmp RPAREN . LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
 
-    ID              reduce using rule 12 (opcomparacion -> MENOR .)
-    NUMBER          reduce using rule 12 (opcomparacion -> MENOR .)
-    CADENA          reduce using rule 12 (opcomparacion -> MENOR .)
-    BOOLEAN         reduce using rule 12 (opcomparacion -> MENOR .)
+    LLLAVE          shift and go to state 33
 
 
 state 27
 
-    (13) opcomparacion -> MAYORIGUAL .
+    (16) expcmp -> valor opcomparacion . valor
+    (7) valor -> . ID
+    (8) valor -> . NUMBER
+    (9) valor -> . CADENA
+    (10) valor -> . BOOLEAN
 
-    ID              reduce using rule 13 (opcomparacion -> MAYORIGUAL .)
-    NUMBER          reduce using rule 13 (opcomparacion -> MAYORIGUAL .)
-    CADENA          reduce using rule 13 (opcomparacion -> MAYORIGUAL .)
-    BOOLEAN         reduce using rule 13 (opcomparacion -> MAYORIGUAL .)
+    ID              shift and go to state 16
+    NUMBER          shift and go to state 18
+    CADENA          shift and go to state 19
+    BOOLEAN         shift and go to state 20
 
+    valor                          shift and go to state 34
 
 state 28
 
-    (14) opcomparacion -> MENORIGUAL .
+    (11) opcomparacion -> IGUAL .
 
-    ID              reduce using rule 14 (opcomparacion -> MENORIGUAL .)
-    NUMBER          reduce using rule 14 (opcomparacion -> MENORIGUAL .)
-    CADENA          reduce using rule 14 (opcomparacion -> MENORIGUAL .)
-    BOOLEAN         reduce using rule 14 (opcomparacion -> MENORIGUAL .)
+    ID              reduce using rule 11 (opcomparacion -> IGUAL .)
+    NUMBER          reduce using rule 11 (opcomparacion -> IGUAL .)
+    CADENA          reduce using rule 11 (opcomparacion -> IGUAL .)
+    BOOLEAN         reduce using rule 11 (opcomparacion -> IGUAL .)
 
 
 state 29
 
-    (16) comparacion -> IF LPAREN expcmp RPAREN LLLAVE . sentencias RLLAVE
-    (2) sentencias -> . asignacion
-    (3) sentencias -> . comparacion
-    (4) asignacion -> . ID ASIGNACION valor PCOMA
-    (5) asignacion -> . ID REF ID PCOMA
-    (16) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE
+    (12) opcomparacion -> MAYOR .
 
-    ID              shift and go to state 6
-    IF              shift and go to state 7
+    ID              reduce using rule 12 (opcomparacion -> MAYOR .)
+    NUMBER          reduce using rule 12 (opcomparacion -> MAYOR .)
+    CADENA          reduce using rule 12 (opcomparacion -> MAYOR .)
+    BOOLEAN         reduce using rule 12 (opcomparacion -> MAYOR .)
 
-    sentencias                     shift and go to state 31
-    asignacion                     shift and go to state 4
-    comparacion                    shift and go to state 5
 
 state 30
 
-    (15) expcmp -> valor opcomparacion valor .
+    (13) opcomparacion -> MENOR .
 
-    RPAREN          reduce using rule 15 (expcmp -> valor opcomparacion valor .)
+    ID              reduce using rule 13 (opcomparacion -> MENOR .)
+    NUMBER          reduce using rule 13 (opcomparacion -> MENOR .)
+    CADENA          reduce using rule 13 (opcomparacion -> MENOR .)
+    BOOLEAN         reduce using rule 13 (opcomparacion -> MENOR .)
 
 
 state 31
 
-    (16) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias . RLLAVE
+    (14) opcomparacion -> MAYORIGUAL .
 
-    RLLAVE          shift and go to state 32
+    ID              reduce using rule 14 (opcomparacion -> MAYORIGUAL .)
+    NUMBER          reduce using rule 14 (opcomparacion -> MAYORIGUAL .)
+    CADENA          reduce using rule 14 (opcomparacion -> MAYORIGUAL .)
+    BOOLEAN         reduce using rule 14 (opcomparacion -> MAYORIGUAL .)
 
 
 state 32
 
-    (16) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE .
+    (15) opcomparacion -> MENORIGUAL .
 
-    FIN             reduce using rule 16 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE .)
-    RLLAVE          reduce using rule 16 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE .)
+    ID              reduce using rule 15 (opcomparacion -> MENORIGUAL .)
+    NUMBER          reduce using rule 15 (opcomparacion -> MENORIGUAL .)
+    CADENA          reduce using rule 15 (opcomparacion -> MENORIGUAL .)
+    BOOLEAN         reduce using rule 15 (opcomparacion -> MENORIGUAL .)
+
+
+state 33
+
+    (17) comparacion -> IF LPAREN expcmp RPAREN LLLAVE . sentencias RLLAVE
+    (18) comparacion -> IF LPAREN expcmp RPAREN LLLAVE . sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (19) comparacion -> IF LPAREN expcmp RPAREN LLLAVE . sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (2) sentencias -> . asignacion
+    (3) sentencias -> . comparacion
+    (4) sentencias -> . impresion
+    (5) asignacion -> . ID ASIGNACION valor PCOMA
+    (6) asignacion -> . ID REF ID PCOMA
+    (17) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE
+    (18) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (19) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (20) impresion -> . ECHO ID
+    (21) impresion -> . ECHO CADENA
+
+    ID              shift and go to state 7
+    IF              shift and go to state 8
+    ECHO            shift and go to state 9
+
+    sentencias                     shift and go to state 35
+    asignacion                     shift and go to state 4
+    comparacion                    shift and go to state 5
+    impresion                      shift and go to state 6
+
+state 34
+
+    (16) expcmp -> valor opcomparacion valor .
+
+    RPAREN          reduce using rule 16 (expcmp -> valor opcomparacion valor .)
+
+
+state 35
+
+    (17) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias . RLLAVE
+    (18) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias . RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (19) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias . RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+
+    RLLAVE          shift and go to state 36
+
+
+state 36
+
+    (17) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE .
+    (18) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE . ELSE LLLAVE sentencias RLLAVE
+    (19) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE . ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+
+    FIN             reduce using rule 17 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE .)
+    RLLAVE          reduce using rule 17 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE .)
+    ELSE            shift and go to state 37
+    ELSEIF          shift and go to state 38
+
+
+state 37
+
+    (18) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE . LLLAVE sentencias RLLAVE
+
+    LLLAVE          shift and go to state 39
+
+
+state 38
+
+    (19) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF . LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+
+    LPAREN          shift and go to state 40
+
+
+state 39
+
+    (18) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE . sentencias RLLAVE
+    (2) sentencias -> . asignacion
+    (3) sentencias -> . comparacion
+    (4) sentencias -> . impresion
+    (5) asignacion -> . ID ASIGNACION valor PCOMA
+    (6) asignacion -> . ID REF ID PCOMA
+    (17) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE
+    (18) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (19) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (20) impresion -> . ECHO ID
+    (21) impresion -> . ECHO CADENA
+
+    ID              shift and go to state 7
+    IF              shift and go to state 8
+    ECHO            shift and go to state 9
+
+    sentencias                     shift and go to state 41
+    asignacion                     shift and go to state 4
+    comparacion                    shift and go to state 5
+    impresion                      shift and go to state 6
+
+state 40
+
+    (19) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN . expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (16) expcmp -> . valor opcomparacion valor
+    (7) valor -> . ID
+    (8) valor -> . NUMBER
+    (9) valor -> . CADENA
+    (10) valor -> . BOOLEAN
+
+    ID              shift and go to state 16
+    NUMBER          shift and go to state 18
+    CADENA          shift and go to state 19
+    BOOLEAN         shift and go to state 20
+
+    expcmp                         shift and go to state 42
+    valor                          shift and go to state 23
+
+state 41
+
+    (18) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias . RLLAVE
+
+    RLLAVE          shift and go to state 43
+
+
+state 42
+
+    (19) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp . RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+
+    RPAREN          shift and go to state 44
+
+
+state 43
+
+    (18) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .
+
+    FIN             reduce using rule 18 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
+    RLLAVE          reduce using rule 18 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
+
+
+state 44
+
+    (19) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN . LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+
+    LLLAVE          shift and go to state 45
+
+
+state 45
+
+    (19) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE . sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (2) sentencias -> . asignacion
+    (3) sentencias -> . comparacion
+    (4) sentencias -> . impresion
+    (5) asignacion -> . ID ASIGNACION valor PCOMA
+    (6) asignacion -> . ID REF ID PCOMA
+    (17) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE
+    (18) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (19) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (20) impresion -> . ECHO ID
+    (21) impresion -> . ECHO CADENA
+
+    ID              shift and go to state 7
+    IF              shift and go to state 8
+    ECHO            shift and go to state 9
+
+    sentencias                     shift and go to state 46
+    asignacion                     shift and go to state 4
+    comparacion                    shift and go to state 5
+    impresion                      shift and go to state 6
+
+state 46
+
+    (19) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias . RLLAVE ELSE LLLAVE sentencias RLLAVE
+
+    RLLAVE          shift and go to state 47
+
+
+state 47
+
+    (19) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE . ELSE LLLAVE sentencias RLLAVE
+
+    ELSE            shift and go to state 48
+
+
+state 48
+
+    (19) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE . LLLAVE sentencias RLLAVE
+
+    LLLAVE          shift and go to state 49
+
+
+state 49
+
+    (19) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE . sentencias RLLAVE
+    (2) sentencias -> . asignacion
+    (3) sentencias -> . comparacion
+    (4) sentencias -> . impresion
+    (5) asignacion -> . ID ASIGNACION valor PCOMA
+    (6) asignacion -> . ID REF ID PCOMA
+    (17) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE
+    (18) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (19) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (20) impresion -> . ECHO ID
+    (21) impresion -> . ECHO CADENA
+
+    ID              shift and go to state 7
+    IF              shift and go to state 8
+    ECHO            shift and go to state 9
+
+    sentencias                     shift and go to state 50
+    asignacion                     shift and go to state 4
+    comparacion                    shift and go to state 5
+    impresion                      shift and go to state 6
+
+state 50
+
+    (19) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias . RLLAVE
+
+    RLLAVE          shift and go to state 51
+
+
+state 51
+
+    (19) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .
+
+    FIN             reduce using rule 19 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
+    RLLAVE          reduce using rule 19 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
 

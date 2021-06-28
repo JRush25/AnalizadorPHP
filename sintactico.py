@@ -6,7 +6,10 @@ def p_programa(p):
     pass
 def p_sentencias(p):
     '''sentencias : asignacion
-                    | comparacion'''
+                    | comparacion
+                    | impresion
+                    | estructura
+    '''
 
 def p_asignacion(p):
     '''asignacion : ID ASIGNACION valor PCOMA
@@ -37,6 +40,13 @@ def p_comparacionif_else(p):
 
 def p_comparacionif_elseif_else(p):
     'comparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE'
+
+def p_impresion(p):
+  '''impresion : ECHO ID PCOMA
+              | ECHO CADENA PCOMA'''
+
+
+
 
 # Error rule for syntax errors
 def p_error(p):
