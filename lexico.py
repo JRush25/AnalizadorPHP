@@ -32,7 +32,11 @@ reserved = {
     'final' : 'FINAL',
   'function' : 'FUNCTION',
   'global' : 'GLOBAL',
-  'instanceof' : 'INSTANCEOF'#David Cevallos fin
+  'instanceof' : 'INSTANCEOF', #David Cevallos fin
+    'array_map' : 'ARRAY_MAP',
+    'heap' : 'HEAP',
+    'insert' : 'INSERT'
+
 
 
 
@@ -72,7 +76,9 @@ tokens = (
     'DECREMENTO',
     'DIV_EQUAL',
     'IS_NOT_EQUAL',
-    'DOUBLE_ARROW' #David Cevallos Final
+    'DOUBLE_ARROW', #David Cevallos Final
+    'LCORCH',
+    'RCORCH'
 
 #Joselyne Torres (fin)
 ) + tuple(reserved.values())
@@ -106,6 +112,8 @@ t_DECREMENTO= r'\-\-'
 t_DIV_EQUAL= r'\/\='
 t_IS_NOT_EQUAL= r'\!\='
 t_DOUBLE_ARROW= r'\=\>'  #David Cevallos Fin
+t_LCORCH= r'\['
+t_RCORCH= r'\]'
 
 
 #Joselyne Torres (inicio)
@@ -209,6 +217,16 @@ def t_INSTANCEOF(t):
     r'instanceof'
     return t
 #David Cevallos Fin
+def t_ARRAY_MAP(t):
+    r'array_map'
+    return t
+def t_HEAP(t):
+    r'heap'
+    return t
+
+
+
+
 # Define a rule so we can track line numbers
 def t_newline(t):
     r'\n+'

@@ -79,9 +79,12 @@ def p_repeticionfor(p):
 def p_repeticionwhile(p):
   'repeticion : WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE'
 
+def p_array_map(p):
+    'array_map : ARRAY_MAP LPAREN funcion COMA array RPAREN PCOMA'
 
-
-
+def p_heap(p):
+    '''heap : HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
+                | LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA'''
 
 
 

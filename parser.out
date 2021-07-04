@@ -78,12 +78,16 @@ Rule 35    actualizar -> INCREMENTO
 Rule 36    actualizar -> DECREMENTO
 Rule 37    repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
 Rule 38    repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
+Rule 39    array_map -> ARRAY_MAP LPAREN funcion COMA array RPAREN PCOMA
+Rule 40    heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
+Rule 41    heap -> LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA
 
 Terminals, with rules where they appear
 
 ABSTRACT             : 
 AND                  : 
-ARRAY                : 23 24
+ARRAY                : 23 24 41
+ARRAY_MAP            : 39
 ASIGNACION           : 7 9 37
 BOOLEAN              : 13
 BOOLEAN_AND          : 
@@ -93,7 +97,7 @@ CADENA               : 12 30
 CASE                 : 
 CATCH                : 
 CLASS                : 
-COMA                 : 26
+COMA                 : 26 39 40
 COMMENT              : 
 CONCAT_EQUAL         : 
 CONST                : 
@@ -104,7 +108,7 @@ DEFAULT              :
 DIVIDE               : 
 DIV_EQUAL            : 
 DO                   : 
-DOUBLE_ARROW         : 23 25 26
+DOUBLE_ARROW         : 23 25 26 40 41
 ECHO                 : 29 30
 ELSE                 : 21 22
 ELSEIF               : 22
@@ -114,33 +118,37 @@ FINAL                :
 FOR                  : 37
 FUNCTION             : 
 GLOBAL               : 
+HEAP                 : 40
 ID                   : 7 8 8 9 10 27 29 37 37 37 38 38
 IF                   : 20 21 22
 IGUAL                : 14
 INCLUDE              : 
 INCREMENTO           : 35
 INICIO               : 1
+INSERT               : 40
 INSTANCEOF           : 
 IS_NOT_EQUAL         : 
+LCORCH               : 40
 LLLAVE               : 20 21 21 22 22 22 37 38
-LPAREN               : 20 21 22 22 23 24 27 37 38
+LPAREN               : 20 21 22 22 23 24 27 37 38 39 40 41 41
 MAYOR                : 15 31
 MAYORIGUAL           : 17 33
 MENOR                : 16 32
 MENORIGUAL           : 18 34
 MINUS                : 
 MOD                  : 
-NUMBER               : 11 37 37
+NUMBER               : 11 37 37 40 40 41
 OR                   : 
-PCOMA                : 7 8 9 27 29 30 37 37 38
+PCOMA                : 7 8 9 27 29 30 37 37 38 39 40 41
 PLUS                 : 
 PRINT                : 
 PRIVATE              : 
 PROTECTED            : 
 PUBLIC               : 
+RCORCH               : 40
 REF                  : 8
 RLLAVE               : 20 21 21 22 22 22 37 38
-RPAREN               : 20 21 22 22 23 24 27 37 38
+RPAREN               : 20 21 22 22 23 24 27 37 38 39 40 41 41
 SORT                 : 27
 TIMES                : 
 TRY                  : 
@@ -150,12 +158,14 @@ error                :
 Nonterminals, with rules where they appear
 
 actualizar           : 37 38
-array                : 9
+array                : 9 39
+array_map            : 
 asignacion           : 2
 comparacion          : 3
 contenido            : 26
 expcmp               : 20 21 22 22
-funcion              : 4
+funcion              : 4 39
+heap                 : 
 impresion            : 5
 opcomparacion        : 19 38
 programa             : 0
@@ -163,7 +173,7 @@ repeticion           : 6
 repeticionrep        : 37
 sentencias           : 1 20 21 21 22 22 22 37 38
 sort                 : 28
-valor                : 7 19 19 23 23 24 25 25 26 26 38
+valor                : 7 19 19 23 23 24 25 25 26 26 38 41
 
 Parsing method: LALR
 
