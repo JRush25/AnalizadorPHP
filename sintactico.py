@@ -131,11 +131,14 @@ def p_actualizar(p):
   '''
 
 def p_repeticionfor(p):
-  'repeticion : FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE '
+  'repeticion : FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE'
+
 
 
 def p_repeticionwhile(p):
-  'repeticion : WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE'
+  '''repeticion : WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
+                  | DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
+  '''
 
 def p_array_map(p):
     'array_map : ARRAY_MAP LPAREN funcion COMA array RPAREN PCOMA'

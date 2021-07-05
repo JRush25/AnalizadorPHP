@@ -13,7 +13,6 @@ Unused terminals:
     DECLARE
     DEFAULT
     DIV_EQUAL
-    DO
     EXTENDS
     FINAL
     GLOBAL
@@ -92,16 +91,17 @@ Rule 60    actualizar -> INCREMENTO
 Rule 61    actualizar -> DECREMENTO
 Rule 62    repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
 Rule 63    repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
-Rule 64    array_map -> ARRAY_MAP LPAREN funcion COMA array RPAREN PCOMA
-Rule 65    heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
-Rule 66    heap -> LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA
+Rule 64    repeticion -> DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
+Rule 65    array_map -> ARRAY_MAP LPAREN funcion COMA array RPAREN PCOMA
+Rule 66    heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
+Rule 67    heap -> LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA
 
 Terminals, with rules where they appear
 
 ABSTRACT             : 
 AND                  : 29
-ARRAY                : 35 36 66
-ARRAY_MAP            : 64
+ARRAY                : 35 36 67
+ARRAY_MAP            : 65
 ASIGNACION           : 9 11 12 62
 BOOLEAN              : 16
 BOOLEAN_AND          : 28
@@ -111,7 +111,7 @@ CADENA               : 15 53 55
 CASE                 : 
 CATCH                : 53
 CLASS                : 
-COMA                 : 53 64 65
+COMA                 : 53 65 66
 COMMENT              : 
 CONCAT_EQUAL         : 
 CONST                : 
@@ -121,8 +121,8 @@ DECREMENTO           : 61
 DEFAULT              : 
 DIVIDE               : 43
 DIV_EQUAL            : 
-DO                   : 
-DOUBLE_ARROW         : 35 65 66
+DO                   : 64
+DOUBLE_ARROW         : 35 66 67
 ECHO                 : 53 54 55
 ELSE                 : 33 34
 ELSEIF               : 34
@@ -135,19 +135,19 @@ FOR                  : 62
 FUNCTION             : 49 50
 GETMESSAGE           : 53
 GLOBAL               : 
-HEAP                 : 65
-ID                   : 9 10 10 11 12 13 37 49 50 51 52 53 53 54 62 62 62 63 63
+HEAP                 : 66
+ID                   : 9 10 10 11 12 13 37 49 50 51 52 53 53 54 62 62 62 63 63 64 64
 IF                   : 31 32 33 34
 IGUAL                : 17
 INCLUDE              : 
 INCREMENTO           : 60
 INICIO               : 1
-INSERT               : 65
+INSERT               : 66
 INSTANCEOF           : 
 IS_NOT_EQUAL         : 
-LCORCH               : 65
-LLLAVE               : 31 32 33 33 34 34 34 49 50 53 53 62 63
-LPAREN               : 23 23 24 24 31 32 33 34 34 35 36 37 49 50 53 62 63 64 65 66 66
+LCORCH               : 66
+LLLAVE               : 31 32 33 33 34 34 34 49 50 53 53 62 63 64
+LPAREN               : 23 23 24 24 31 32 33 34 34 35 36 37 49 50 53 62 63 64 65 66 67 67
 MAYOR                : 18 56
 MAYORIGUAL           : 20 58
 MENOR                : 19 57
@@ -155,30 +155,30 @@ MENORIGUAL           : 21 59
 MINUS                : 44
 MOD                  : 
 NFUNCION             : 49 50
-NUMBER               : 14 41 41 62 62 65 65 66
+NUMBER               : 14 41 41 62 62 66 66 67
 OR                   : 30
-PCOMA                : 9 10 11 12 37 50 54 55 62 62 63 64 65 66
+PCOMA                : 9 10 11 12 37 50 54 55 62 62 63 64 64 65 66 67
 PLUS                 : 42
 PRINT                : 
 PRIVATE              : 
 PROTECTED            : 
 PUBLIC               : 
-RCORCH               : 65
+RCORCH               : 66
 REF                  : 10
 RETURN               : 50
-RLLAVE               : 31 32 33 33 34 34 34 49 50 53 53 62 63
-RPAREN               : 23 23 24 24 31 32 33 34 34 35 36 37 49 50 53 62 63 64 65 66 66
+RLLAVE               : 31 32 33 33 34 34 34 49 50 53 53 62 63 64
+RPAREN               : 23 23 24 24 31 32 33 34 34 35 36 37 49 50 53 62 63 64 65 66 67 67
 SORT                 : 37
 TIMES                : 45
 TRY                  : 53
-WHILE                : 63
+WHILE                : 63 64
 error                : 
 
 Nonterminals, with rules where they appear
 
-actualizar           : 62 63
+actualizar           : 62 63 64
 args                 : 49 50 52
-array                : 38 64
+array                : 38 65
 array_map            : 39
 asignacion           : 2
 comparacion          : 3
@@ -188,18 +188,18 @@ expcmp               : 24 25 25 26 31 33 34 34
 expcmplog            : 26 32 47
 expresion            : 7 12
 expresionmat         : 46
-funcion              : 4 64
+funcion              : 4 65
 heap                 : 40
 impresion            : 5
-opcomparacion        : 22 23 23 24 24 63
+opcomparacion        : 22 23 23 24 24 63 64
 operadormat          : 41
 oplog                : 23 24 24 25 26
 programa             : 0
 repeticion           : 6
 repeticionrep        : 62
-sentencias           : 1 31 32 33 33 34 34 34 49 50 53 62 63
+sentencias           : 1 31 32 33 33 34 34 34 49 50 53 62 63 64
 sort                 : 48
-valor                : 9 22 22 23 23 23 23 24 24 24 24 35 35 36 50 63 66
+valor                : 9 22 22 23 23 23 23 24 24 24 24 35 35 36 50 63 64 67
 
 Parsing method: LALR
 
@@ -243,6 +243,7 @@ state 2
     (55) impresion -> . ECHO CADENA PCOMA
     (62) repeticion -> . FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
     (63) repeticion -> . WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
+    (64) repeticion -> . DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
     (46) expresion -> . expresionmat
     (47) expresion -> . expcmplog
     (53) excepcion -> . TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
@@ -264,12 +265,13 @@ state 2
     ECHO            shift and go to state 19
     FOR             shift and go to state 21
     WHILE           shift and go to state 23
-    TRY             shift and go to state 25
-    SORT            shift and go to state 26
+    DO              shift and go to state 24
+    TRY             shift and go to state 26
+    SORT            shift and go to state 27
     NUMBER          shift and go to state 22
     LPAREN          shift and go to state 14
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
     sentencias                     shift and go to state 3
     asignacion                     shift and go to state 4
@@ -283,13 +285,13 @@ state 2
     expcmp                         shift and go to state 15
     expcmplog                      shift and go to state 16
     sort                           shift and go to state 17
-    expresionmat                   shift and go to state 24
+    expresionmat                   shift and go to state 25
 
 state 3
 
     (1) programa -> INICIO sentencias . FIN
 
-    FIN             shift and go to state 28
+    FIN             shift and go to state 29
 
 
 state 4
@@ -297,9 +299,9 @@ state 4
     (2) sentencias -> asignacion .
 
     FIN             reduce using rule 2 (sentencias -> asignacion .)
+    ID              reduce using rule 2 (sentencias -> asignacion .)
     RLLAVE          reduce using rule 2 (sentencias -> asignacion .)
     RETURN          reduce using rule 2 (sentencias -> asignacion .)
-    ID              reduce using rule 2 (sentencias -> asignacion .)
 
 
 state 5
@@ -307,9 +309,9 @@ state 5
     (3) sentencias -> comparacion .
 
     FIN             reduce using rule 3 (sentencias -> comparacion .)
+    ID              reduce using rule 3 (sentencias -> comparacion .)
     RLLAVE          reduce using rule 3 (sentencias -> comparacion .)
     RETURN          reduce using rule 3 (sentencias -> comparacion .)
-    ID              reduce using rule 3 (sentencias -> comparacion .)
 
 
 state 6
@@ -317,9 +319,9 @@ state 6
     (4) sentencias -> funcion .
 
     FIN             reduce using rule 4 (sentencias -> funcion .)
+    ID              reduce using rule 4 (sentencias -> funcion .)
     RLLAVE          reduce using rule 4 (sentencias -> funcion .)
     RETURN          reduce using rule 4 (sentencias -> funcion .)
-    ID              reduce using rule 4 (sentencias -> funcion .)
 
 
 state 7
@@ -327,9 +329,9 @@ state 7
     (5) sentencias -> impresion .
 
     FIN             reduce using rule 5 (sentencias -> impresion .)
+    ID              reduce using rule 5 (sentencias -> impresion .)
     RLLAVE          reduce using rule 5 (sentencias -> impresion .)
     RETURN          reduce using rule 5 (sentencias -> impresion .)
-    ID              reduce using rule 5 (sentencias -> impresion .)
 
 
 state 8
@@ -337,9 +339,9 @@ state 8
     (6) sentencias -> repeticion .
 
     FIN             reduce using rule 6 (sentencias -> repeticion .)
+    ID              reduce using rule 6 (sentencias -> repeticion .)
     RLLAVE          reduce using rule 6 (sentencias -> repeticion .)
     RETURN          reduce using rule 6 (sentencias -> repeticion .)
-    ID              reduce using rule 6 (sentencias -> repeticion .)
 
 
 state 9
@@ -347,9 +349,9 @@ state 9
     (7) sentencias -> expresion .
 
     FIN             reduce using rule 7 (sentencias -> expresion .)
+    ID              reduce using rule 7 (sentencias -> expresion .)
     RLLAVE          reduce using rule 7 (sentencias -> expresion .)
     RETURN          reduce using rule 7 (sentencias -> expresion .)
-    ID              reduce using rule 7 (sentencias -> expresion .)
 
 
 state 10
@@ -357,9 +359,9 @@ state 10
     (8) sentencias -> excepcion .
 
     FIN             reduce using rule 8 (sentencias -> excepcion .)
+    ID              reduce using rule 8 (sentencias -> excepcion .)
     RLLAVE          reduce using rule 8 (sentencias -> excepcion .)
     RETURN          reduce using rule 8 (sentencias -> excepcion .)
-    ID              reduce using rule 8 (sentencias -> excepcion .)
 
 
 state 11
@@ -370,8 +372,8 @@ state 11
     (12) asignacion -> ID . ASIGNACION expresion PCOMA
     (13) valor -> ID .
 
-    ASIGNACION      shift and go to state 29
-    REF             shift and go to state 30
+    ASIGNACION      shift and go to state 30
+    REF             shift and go to state 31
     IGUAL           reduce using rule 13 (valor -> ID .)
     MAYOR           reduce using rule 13 (valor -> ID .)
     MENOR           reduce using rule 13 (valor -> ID .)
@@ -388,13 +390,13 @@ state 12
     (20) opcomparacion -> . MAYORIGUAL
     (21) opcomparacion -> . MENORIGUAL
 
-    IGUAL           shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
+    IGUAL           shift and go to state 33
+    MAYOR           shift and go to state 34
+    MENOR           shift and go to state 35
+    MAYORIGUAL      shift and go to state 36
+    MENORIGUAL      shift and go to state 37
 
-    opcomparacion                  shift and go to state 31
+    opcomparacion                  shift and go to state 32
 
 state 13
 
@@ -403,7 +405,7 @@ state 13
     (33) comparacion -> IF . LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
     (34) comparacion -> IF . LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
 
-    LPAREN          shift and go to state 37
+    LPAREN          shift and go to state 38
 
 
 state 14
@@ -415,12 +417,12 @@ state 14
     (15) valor -> . CADENA
     (16) valor -> . BOOLEAN
 
-    ID              shift and go to state 39
-    NUMBER          shift and go to state 40
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 41
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    valor                          shift and go to state 38
+    valor                          shift and go to state 39
 
 state 15
 
@@ -431,12 +433,12 @@ state 15
     (29) oplog -> . AND
     (30) oplog -> . OR
 
-    BOOLEAN_OR      shift and go to state 42
-    BOOLEAN_AND     shift and go to state 43
-    AND             shift and go to state 44
-    OR              shift and go to state 45
+    BOOLEAN_OR      shift and go to state 43
+    BOOLEAN_AND     shift and go to state 44
+    AND             shift and go to state 45
+    OR              shift and go to state 46
 
-    oplog                          shift and go to state 41
+    oplog                          shift and go to state 42
 
 state 16
 
@@ -444,9 +446,9 @@ state 16
 
     FIN             reduce using rule 47 (expresion -> expcmplog .)
     PCOMA           reduce using rule 47 (expresion -> expcmplog .)
+    ID              reduce using rule 47 (expresion -> expcmplog .)
     RLLAVE          reduce using rule 47 (expresion -> expcmplog .)
     RETURN          reduce using rule 47 (expresion -> expcmplog .)
-    ID              reduce using rule 47 (expresion -> expcmplog .)
 
 
 state 17
@@ -454,10 +456,10 @@ state 17
     (48) funcion -> sort .
 
     FIN             reduce using rule 48 (funcion -> sort .)
+    ID              reduce using rule 48 (funcion -> sort .)
     RLLAVE          reduce using rule 48 (funcion -> sort .)
     COMA            reduce using rule 48 (funcion -> sort .)
     RETURN          reduce using rule 48 (funcion -> sort .)
-    ID              reduce using rule 48 (funcion -> sort .)
 
 
 state 18
@@ -465,7 +467,7 @@ state 18
     (49) funcion -> FUNCTION . NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RLLAVE
     (50) funcion -> FUNCTION . NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE
 
-    NFUNCION        shift and go to state 46
+    NFUNCION        shift and go to state 47
 
 
 state 19
@@ -473,8 +475,8 @@ state 19
     (54) impresion -> ECHO . ID PCOMA
     (55) impresion -> ECHO . CADENA PCOMA
 
-    ID              shift and go to state 47
-    CADENA          shift and go to state 48
+    ID              shift and go to state 48
+    CADENA          shift and go to state 49
 
 
 state 20
@@ -493,9 +495,9 @@ state 20
     OR              reduce using rule 15 (valor -> CADENA .)
     RPAREN          reduce using rule 15 (valor -> CADENA .)
     FIN             reduce using rule 15 (valor -> CADENA .)
+    ID              reduce using rule 15 (valor -> CADENA .)
     RLLAVE          reduce using rule 15 (valor -> CADENA .)
     RETURN          reduce using rule 15 (valor -> CADENA .)
-    ID              reduce using rule 15 (valor -> CADENA .)
     DOUBLE_ARROW    reduce using rule 15 (valor -> CADENA .)
 
 
@@ -503,7 +505,7 @@ state 21
 
     (62) repeticion -> FOR . LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
 
-    LPAREN          shift and go to state 49
+    LPAREN          shift and go to state 50
 
 
 state 22
@@ -520,46 +522,53 @@ state 22
     MENOR           reduce using rule 14 (valor -> NUMBER .)
     MAYORIGUAL      reduce using rule 14 (valor -> NUMBER .)
     MENORIGUAL      reduce using rule 14 (valor -> NUMBER .)
-    PLUS            shift and go to state 51
-    DIVIDE          shift and go to state 52
-    MINUS           shift and go to state 53
-    TIMES           shift and go to state 54
+    PLUS            shift and go to state 52
+    DIVIDE          shift and go to state 53
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 55
 
-    operadormat                    shift and go to state 50
+    operadormat                    shift and go to state 51
 
 state 23
 
     (63) repeticion -> WHILE . LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
 
-    LPAREN          shift and go to state 55
+    LPAREN          shift and go to state 56
 
 
 state 24
+
+    (64) repeticion -> DO . LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
+
+    LLLAVE          shift and go to state 57
+
+
+state 25
 
     (46) expresion -> expresionmat .
 
     FIN             reduce using rule 46 (expresion -> expresionmat .)
     PCOMA           reduce using rule 46 (expresion -> expresionmat .)
+    ID              reduce using rule 46 (expresion -> expresionmat .)
     RLLAVE          reduce using rule 46 (expresion -> expresionmat .)
     RETURN          reduce using rule 46 (expresion -> expresionmat .)
-    ID              reduce using rule 46 (expresion -> expresionmat .)
-
-
-state 25
-
-    (53) excepcion -> TRY . LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
-
-    LLLAVE          shift and go to state 56
 
 
 state 26
 
-    (37) sort -> SORT . LPAREN ID RPAREN PCOMA
+    (53) excepcion -> TRY . LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
 
-    LPAREN          shift and go to state 57
+    LLLAVE          shift and go to state 58
 
 
 state 27
+
+    (37) sort -> SORT . LPAREN ID RPAREN PCOMA
+
+    LPAREN          shift and go to state 59
+
+
+state 28
 
     (16) valor -> BOOLEAN .
 
@@ -575,20 +584,20 @@ state 27
     OR              reduce using rule 16 (valor -> BOOLEAN .)
     RPAREN          reduce using rule 16 (valor -> BOOLEAN .)
     FIN             reduce using rule 16 (valor -> BOOLEAN .)
+    ID              reduce using rule 16 (valor -> BOOLEAN .)
     RLLAVE          reduce using rule 16 (valor -> BOOLEAN .)
     RETURN          reduce using rule 16 (valor -> BOOLEAN .)
-    ID              reduce using rule 16 (valor -> BOOLEAN .)
     DOUBLE_ARROW    reduce using rule 16 (valor -> BOOLEAN .)
 
 
-state 28
+state 29
 
     (1) programa -> INICIO sentencias FIN .
 
     $end            reduce using rule 1 (programa -> INICIO sentencias FIN .)
 
 
-state 29
+state 30
 
     (9) asignacion -> ID ASIGNACION . valor PCOMA
     (11) asignacion -> ID ASIGNACION . estdatos PCOMA
@@ -604,9 +613,9 @@ state 29
     (47) expresion -> . expcmplog
     (35) array -> . ARRAY LPAREN valor DOUBLE_ARROW valor RPAREN
     (36) array -> . ARRAY LPAREN valor RPAREN
-    (64) array_map -> . ARRAY_MAP LPAREN funcion COMA array RPAREN PCOMA
-    (65) heap -> . HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
-    (66) heap -> . LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA
+    (65) array_map -> . ARRAY_MAP LPAREN funcion COMA array RPAREN PCOMA
+    (66) heap -> . HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
+    (67) heap -> . LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA
     (41) expresionmat -> . NUMBER operadormat NUMBER
     (25) expcmplog -> . expcmp oplog expcmp
     (26) expcmplog -> . expcmp oplog expcmplog
@@ -614,33 +623,33 @@ state 29
     (23) expcmp -> . LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN
     (24) expcmp -> . LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp
 
-    ID              shift and go to state 39
-    NUMBER          shift and go to state 61
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 63
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
-    ARRAY           shift and go to state 65
-    ARRAY_MAP       shift and go to state 67
-    HEAP            shift and go to state 68
-    LPAREN          shift and go to state 66
+    BOOLEAN         shift and go to state 28
+    ARRAY           shift and go to state 67
+    ARRAY_MAP       shift and go to state 69
+    HEAP            shift and go to state 70
+    LPAREN          shift and go to state 68
 
-    valor                          shift and go to state 58
-    estdatos                       shift and go to state 59
-    expresion                      shift and go to state 60
-    array                          shift and go to state 62
-    array_map                      shift and go to state 63
-    heap                           shift and go to state 64
-    expresionmat                   shift and go to state 24
+    valor                          shift and go to state 60
+    estdatos                       shift and go to state 61
+    expresion                      shift and go to state 62
+    array                          shift and go to state 64
+    array_map                      shift and go to state 65
+    heap                           shift and go to state 66
+    expresionmat                   shift and go to state 25
     expcmplog                      shift and go to state 16
     expcmp                         shift and go to state 15
 
-state 30
+state 31
 
     (10) asignacion -> ID REF . ID PCOMA
 
-    ID              shift and go to state 69
+    ID              shift and go to state 71
 
 
-state 31
+state 32
 
     (22) expcmp -> valor opcomparacion . valor
     (13) valor -> . ID
@@ -648,14 +657,14 @@ state 31
     (15) valor -> . CADENA
     (16) valor -> . BOOLEAN
 
-    ID              shift and go to state 39
-    NUMBER          shift and go to state 40
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 41
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    valor                          shift and go to state 70
+    valor                          shift and go to state 72
 
-state 32
+state 33
 
     (17) opcomparacion -> IGUAL .
 
@@ -665,7 +674,7 @@ state 32
     BOOLEAN         reduce using rule 17 (opcomparacion -> IGUAL .)
 
 
-state 33
+state 34
 
     (18) opcomparacion -> MAYOR .
 
@@ -675,7 +684,7 @@ state 33
     BOOLEAN         reduce using rule 18 (opcomparacion -> MAYOR .)
 
 
-state 34
+state 35
 
     (19) opcomparacion -> MENOR .
 
@@ -685,7 +694,7 @@ state 34
     BOOLEAN         reduce using rule 19 (opcomparacion -> MENOR .)
 
 
-state 35
+state 36
 
     (20) opcomparacion -> MAYORIGUAL .
 
@@ -695,7 +704,7 @@ state 35
     BOOLEAN         reduce using rule 20 (opcomparacion -> MAYORIGUAL .)
 
 
-state 36
+state 37
 
     (21) opcomparacion -> MENORIGUAL .
 
@@ -705,7 +714,7 @@ state 36
     BOOLEAN         reduce using rule 21 (opcomparacion -> MENORIGUAL .)
 
 
-state 37
+state 38
 
     (31) comparacion -> IF LPAREN . expcmp RPAREN LLLAVE sentencias RLLAVE
     (32) comparacion -> IF LPAREN . expcmplog RPAREN LLLAVE sentencias RLLAVE
@@ -722,16 +731,16 @@ state 37
     (16) valor -> . BOOLEAN
 
     LPAREN          shift and go to state 14
-    ID              shift and go to state 39
-    NUMBER          shift and go to state 40
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 41
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    expcmp                         shift and go to state 71
-    expcmplog                      shift and go to state 72
+    expcmp                         shift and go to state 73
+    expcmplog                      shift and go to state 74
     valor                          shift and go to state 12
 
-state 38
+state 39
 
     (23) expcmp -> LPAREN valor . opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN
     (24) expcmp -> LPAREN valor . opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp
@@ -741,15 +750,15 @@ state 38
     (20) opcomparacion -> . MAYORIGUAL
     (21) opcomparacion -> . MENORIGUAL
 
-    IGUAL           shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
+    IGUAL           shift and go to state 33
+    MAYOR           shift and go to state 34
+    MENOR           shift and go to state 35
+    MAYORIGUAL      shift and go to state 36
+    MENORIGUAL      shift and go to state 37
 
-    opcomparacion                  shift and go to state 73
+    opcomparacion                  shift and go to state 75
 
-state 39
+state 40
 
     (13) valor -> ID .
 
@@ -765,13 +774,13 @@ state 39
     OR              reduce using rule 13 (valor -> ID .)
     RPAREN          reduce using rule 13 (valor -> ID .)
     FIN             reduce using rule 13 (valor -> ID .)
+    ID              reduce using rule 13 (valor -> ID .)
     RLLAVE          reduce using rule 13 (valor -> ID .)
     RETURN          reduce using rule 13 (valor -> ID .)
-    ID              reduce using rule 13 (valor -> ID .)
     DOUBLE_ARROW    reduce using rule 13 (valor -> ID .)
 
 
-state 40
+state 41
 
     (14) valor -> NUMBER .
 
@@ -787,13 +796,13 @@ state 40
     RPAREN          reduce using rule 14 (valor -> NUMBER .)
     FIN             reduce using rule 14 (valor -> NUMBER .)
     PCOMA           reduce using rule 14 (valor -> NUMBER .)
+    ID              reduce using rule 14 (valor -> NUMBER .)
     RLLAVE          reduce using rule 14 (valor -> NUMBER .)
     RETURN          reduce using rule 14 (valor -> NUMBER .)
-    ID              reduce using rule 14 (valor -> NUMBER .)
     DOUBLE_ARROW    reduce using rule 14 (valor -> NUMBER .)
 
 
-state 41
+state 42
 
     (25) expcmplog -> expcmp oplog . expcmp
     (26) expcmplog -> expcmp oplog . expcmplog
@@ -808,16 +817,16 @@ state 41
     (16) valor -> . BOOLEAN
 
     LPAREN          shift and go to state 14
-    ID              shift and go to state 39
-    NUMBER          shift and go to state 40
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 41
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    expcmp                         shift and go to state 74
-    expcmplog                      shift and go to state 75
+    expcmp                         shift and go to state 76
+    expcmplog                      shift and go to state 77
     valor                          shift and go to state 12
 
-state 42
+state 43
 
     (27) oplog -> BOOLEAN_OR .
 
@@ -828,7 +837,7 @@ state 42
     BOOLEAN         reduce using rule 27 (oplog -> BOOLEAN_OR .)
 
 
-state 43
+state 44
 
     (28) oplog -> BOOLEAN_AND .
 
@@ -839,7 +848,7 @@ state 43
     BOOLEAN         reduce using rule 28 (oplog -> BOOLEAN_AND .)
 
 
-state 44
+state 45
 
     (29) oplog -> AND .
 
@@ -850,7 +859,7 @@ state 44
     BOOLEAN         reduce using rule 29 (oplog -> AND .)
 
 
-state 45
+state 46
 
     (30) oplog -> OR .
 
@@ -861,78 +870,147 @@ state 45
     BOOLEAN         reduce using rule 30 (oplog -> OR .)
 
 
-state 46
+state 47
 
     (49) funcion -> FUNCTION NFUNCION . ID LPAREN args RPAREN LLLAVE sentencias RLLAVE
     (50) funcion -> FUNCTION NFUNCION . ID LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE
 
-    ID              shift and go to state 76
-
-
-state 47
-
-    (54) impresion -> ECHO ID . PCOMA
-
-    PCOMA           shift and go to state 77
+    ID              shift and go to state 78
 
 
 state 48
 
-    (55) impresion -> ECHO CADENA . PCOMA
+    (54) impresion -> ECHO ID . PCOMA
 
-    PCOMA           shift and go to state 78
+    PCOMA           shift and go to state 79
 
 
 state 49
 
-    (62) repeticion -> FOR LPAREN . ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
+    (55) impresion -> ECHO CADENA . PCOMA
 
-    ID              shift and go to state 79
+    PCOMA           shift and go to state 80
 
 
 state 50
 
-    (41) expresionmat -> NUMBER operadormat . NUMBER
+    (62) repeticion -> FOR LPAREN . ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
 
-    NUMBER          shift and go to state 80
+    ID              shift and go to state 81
 
 
 state 51
+
+    (41) expresionmat -> NUMBER operadormat . NUMBER
+
+    NUMBER          shift and go to state 82
+
+
+state 52
 
     (42) operadormat -> PLUS .
 
     NUMBER          reduce using rule 42 (operadormat -> PLUS .)
 
 
-state 52
+state 53
 
     (43) operadormat -> DIVIDE .
 
     NUMBER          reduce using rule 43 (operadormat -> DIVIDE .)
 
 
-state 53
+state 54
 
     (44) operadormat -> MINUS .
 
     NUMBER          reduce using rule 44 (operadormat -> MINUS .)
 
 
-state 54
+state 55
 
     (45) operadormat -> TIMES .
 
     NUMBER          reduce using rule 45 (operadormat -> TIMES .)
 
 
-state 55
+state 56
 
     (63) repeticion -> WHILE LPAREN . ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
 
-    ID              shift and go to state 81
+    ID              shift and go to state 83
 
 
-state 56
+state 57
+
+    (64) repeticion -> DO LLLAVE . sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
+    (2) sentencias -> . asignacion
+    (3) sentencias -> . comparacion
+    (4) sentencias -> . funcion
+    (5) sentencias -> . impresion
+    (6) sentencias -> . repeticion
+    (7) sentencias -> . expresion
+    (8) sentencias -> . excepcion
+    (9) asignacion -> . ID ASIGNACION valor PCOMA
+    (10) asignacion -> . ID REF ID PCOMA
+    (11) asignacion -> . ID ASIGNACION estdatos PCOMA
+    (12) asignacion -> . ID ASIGNACION expresion PCOMA
+    (31) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE
+    (32) comparacion -> . IF LPAREN expcmplog RPAREN LLLAVE sentencias RLLAVE
+    (33) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (34) comparacion -> . IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (48) funcion -> . sort
+    (49) funcion -> . FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RLLAVE
+    (50) funcion -> . FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE
+    (54) impresion -> . ECHO ID PCOMA
+    (55) impresion -> . ECHO CADENA PCOMA
+    (62) repeticion -> . FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
+    (63) repeticion -> . WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
+    (64) repeticion -> . DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
+    (46) expresion -> . expresionmat
+    (47) expresion -> . expcmplog
+    (53) excepcion -> . TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
+    (37) sort -> . SORT LPAREN ID RPAREN PCOMA
+    (41) expresionmat -> . NUMBER operadormat NUMBER
+    (25) expcmplog -> . expcmp oplog expcmp
+    (26) expcmplog -> . expcmp oplog expcmplog
+    (22) expcmp -> . valor opcomparacion valor
+    (23) expcmp -> . LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN
+    (24) expcmp -> . LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp
+    (13) valor -> . ID
+    (14) valor -> . NUMBER
+    (15) valor -> . CADENA
+    (16) valor -> . BOOLEAN
+
+    ID              shift and go to state 11
+    IF              shift and go to state 13
+    FUNCTION        shift and go to state 18
+    ECHO            shift and go to state 19
+    FOR             shift and go to state 21
+    WHILE           shift and go to state 23
+    DO              shift and go to state 24
+    TRY             shift and go to state 26
+    SORT            shift and go to state 27
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 14
+    CADENA          shift and go to state 20
+    BOOLEAN         shift and go to state 28
+
+    sentencias                     shift and go to state 84
+    valor                          shift and go to state 12
+    asignacion                     shift and go to state 4
+    comparacion                    shift and go to state 5
+    funcion                        shift and go to state 6
+    impresion                      shift and go to state 7
+    repeticion                     shift and go to state 8
+    expresion                      shift and go to state 9
+    excepcion                      shift and go to state 10
+    expcmp                         shift and go to state 15
+    expcmplog                      shift and go to state 16
+    sort                           shift and go to state 17
+    expresionmat                   shift and go to state 25
+
+state 58
 
     (53) excepcion -> TRY LLLAVE . sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
     (2) sentencias -> . asignacion
@@ -957,6 +1035,7 @@ state 56
     (55) impresion -> . ECHO CADENA PCOMA
     (62) repeticion -> . FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
     (63) repeticion -> . WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
+    (64) repeticion -> . DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
     (46) expresion -> . expresionmat
     (47) expresion -> . expcmplog
     (53) excepcion -> . TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
@@ -978,14 +1057,15 @@ state 56
     ECHO            shift and go to state 19
     FOR             shift and go to state 21
     WHILE           shift and go to state 23
-    TRY             shift and go to state 25
-    SORT            shift and go to state 26
+    DO              shift and go to state 24
+    TRY             shift and go to state 26
+    SORT            shift and go to state 27
     NUMBER          shift and go to state 22
     LPAREN          shift and go to state 14
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    sentencias                     shift and go to state 82
+    sentencias                     shift and go to state 85
     asignacion                     shift and go to state 4
     comparacion                    shift and go to state 5
     funcion                        shift and go to state 6
@@ -997,16 +1077,16 @@ state 56
     expcmp                         shift and go to state 15
     expcmplog                      shift and go to state 16
     sort                           shift and go to state 17
-    expresionmat                   shift and go to state 24
+    expresionmat                   shift and go to state 25
 
-state 57
+state 59
 
     (37) sort -> SORT LPAREN . ID RPAREN PCOMA
 
-    ID              shift and go to state 83
+    ID              shift and go to state 86
 
 
-state 58
+state 60
 
     (9) asignacion -> ID ASIGNACION valor . PCOMA
     (22) expcmp -> valor . opcomparacion valor
@@ -1016,30 +1096,30 @@ state 58
     (20) opcomparacion -> . MAYORIGUAL
     (21) opcomparacion -> . MENORIGUAL
 
-    PCOMA           shift and go to state 84
-    IGUAL           shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
+    PCOMA           shift and go to state 87
+    IGUAL           shift and go to state 33
+    MAYOR           shift and go to state 34
+    MENOR           shift and go to state 35
+    MAYORIGUAL      shift and go to state 36
+    MENORIGUAL      shift and go to state 37
 
-    opcomparacion                  shift and go to state 31
+    opcomparacion                  shift and go to state 32
 
-state 59
+state 61
 
     (11) asignacion -> ID ASIGNACION estdatos . PCOMA
 
-    PCOMA           shift and go to state 85
+    PCOMA           shift and go to state 88
 
 
-state 60
+state 62
 
     (12) asignacion -> ID ASIGNACION expresion . PCOMA
 
-    PCOMA           shift and go to state 86
+    PCOMA           shift and go to state 89
 
 
-state 61
+state 63
 
     (14) valor -> NUMBER .
     (41) expresionmat -> NUMBER . operadormat NUMBER
@@ -1054,45 +1134,45 @@ state 61
     MENOR           reduce using rule 14 (valor -> NUMBER .)
     MAYORIGUAL      reduce using rule 14 (valor -> NUMBER .)
     MENORIGUAL      reduce using rule 14 (valor -> NUMBER .)
-    PLUS            shift and go to state 51
-    DIVIDE          shift and go to state 52
-    MINUS           shift and go to state 53
-    TIMES           shift and go to state 54
+    PLUS            shift and go to state 52
+    DIVIDE          shift and go to state 53
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 55
 
-    operadormat                    shift and go to state 50
+    operadormat                    shift and go to state 51
 
-state 62
+state 64
 
     (38) estdatos -> array .
 
     PCOMA           reduce using rule 38 (estdatos -> array .)
 
 
-state 63
+state 65
 
     (39) estdatos -> array_map .
 
     PCOMA           reduce using rule 39 (estdatos -> array_map .)
 
 
-state 64
+state 66
 
     (40) estdatos -> heap .
 
     PCOMA           reduce using rule 40 (estdatos -> heap .)
 
 
-state 65
+state 67
 
     (35) array -> ARRAY . LPAREN valor DOUBLE_ARROW valor RPAREN
     (36) array -> ARRAY . LPAREN valor RPAREN
 
-    LPAREN          shift and go to state 87
+    LPAREN          shift and go to state 90
 
 
-state 66
+state 68
 
-    (66) heap -> LPAREN . ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA
+    (67) heap -> LPAREN . ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA
     (23) expcmp -> LPAREN . valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN
     (24) expcmp -> LPAREN . valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp
     (13) valor -> . ID
@@ -1100,36 +1180,36 @@ state 66
     (15) valor -> . CADENA
     (16) valor -> . BOOLEAN
 
-    ARRAY           shift and go to state 88
-    ID              shift and go to state 39
-    NUMBER          shift and go to state 40
+    ARRAY           shift and go to state 91
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 41
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    valor                          shift and go to state 38
-
-state 67
-
-    (64) array_map -> ARRAY_MAP . LPAREN funcion COMA array RPAREN PCOMA
-
-    LPAREN          shift and go to state 89
-
-
-state 68
-
-    (65) heap -> HEAP . DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
-
-    DOUBLE_ARROW    shift and go to state 90
-
+    valor                          shift and go to state 39
 
 state 69
 
-    (10) asignacion -> ID REF ID . PCOMA
+    (65) array_map -> ARRAY_MAP . LPAREN funcion COMA array RPAREN PCOMA
 
-    PCOMA           shift and go to state 91
+    LPAREN          shift and go to state 92
 
 
 state 70
+
+    (66) heap -> HEAP . DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
+
+    DOUBLE_ARROW    shift and go to state 93
+
+
+state 71
+
+    (10) asignacion -> ID REF ID . PCOMA
+
+    PCOMA           shift and go to state 94
+
+
+state 72
 
     (22) expcmp -> valor opcomparacion valor .
 
@@ -1140,12 +1220,12 @@ state 70
     RPAREN          reduce using rule 22 (expcmp -> valor opcomparacion valor .)
     FIN             reduce using rule 22 (expcmp -> valor opcomparacion valor .)
     PCOMA           reduce using rule 22 (expcmp -> valor opcomparacion valor .)
+    ID              reduce using rule 22 (expcmp -> valor opcomparacion valor .)
     RLLAVE          reduce using rule 22 (expcmp -> valor opcomparacion valor .)
     RETURN          reduce using rule 22 (expcmp -> valor opcomparacion valor .)
-    ID              reduce using rule 22 (expcmp -> valor opcomparacion valor .)
 
 
-state 71
+state 73
 
     (31) comparacion -> IF LPAREN expcmp . RPAREN LLLAVE sentencias RLLAVE
     (33) comparacion -> IF LPAREN expcmp . RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
@@ -1157,22 +1237,22 @@ state 71
     (29) oplog -> . AND
     (30) oplog -> . OR
 
-    RPAREN          shift and go to state 92
-    BOOLEAN_OR      shift and go to state 42
-    BOOLEAN_AND     shift and go to state 43
-    AND             shift and go to state 44
-    OR              shift and go to state 45
+    RPAREN          shift and go to state 95
+    BOOLEAN_OR      shift and go to state 43
+    BOOLEAN_AND     shift and go to state 44
+    AND             shift and go to state 45
+    OR              shift and go to state 46
 
-    oplog                          shift and go to state 41
+    oplog                          shift and go to state 42
 
-state 72
+state 74
 
     (32) comparacion -> IF LPAREN expcmplog . RPAREN LLLAVE sentencias RLLAVE
 
-    RPAREN          shift and go to state 93
+    RPAREN          shift and go to state 96
 
 
-state 73
+state 75
 
     (23) expcmp -> LPAREN valor opcomparacion . valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN
     (24) expcmp -> LPAREN valor opcomparacion . valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp
@@ -1181,14 +1261,14 @@ state 73
     (15) valor -> . CADENA
     (16) valor -> . BOOLEAN
 
-    ID              shift and go to state 39
-    NUMBER          shift and go to state 40
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 41
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    valor                          shift and go to state 94
+    valor                          shift and go to state 97
 
-state 74
+state 76
 
     (25) expcmplog -> expcmp oplog expcmp .
     (25) expcmplog -> expcmp . oplog expcmp
@@ -1201,75 +1281,75 @@ state 74
     FIN             reduce using rule 25 (expcmplog -> expcmp oplog expcmp .)
     PCOMA           reduce using rule 25 (expcmplog -> expcmp oplog expcmp .)
     RPAREN          reduce using rule 25 (expcmplog -> expcmp oplog expcmp .)
+    ID              reduce using rule 25 (expcmplog -> expcmp oplog expcmp .)
     RLLAVE          reduce using rule 25 (expcmplog -> expcmp oplog expcmp .)
     RETURN          reduce using rule 25 (expcmplog -> expcmp oplog expcmp .)
-    ID              reduce using rule 25 (expcmplog -> expcmp oplog expcmp .)
-    BOOLEAN_OR      shift and go to state 42
-    BOOLEAN_AND     shift and go to state 43
-    AND             shift and go to state 44
-    OR              shift and go to state 45
+    BOOLEAN_OR      shift and go to state 43
+    BOOLEAN_AND     shift and go to state 44
+    AND             shift and go to state 45
+    OR              shift and go to state 46
 
-    oplog                          shift and go to state 41
+    oplog                          shift and go to state 42
 
-state 75
+state 77
 
     (26) expcmplog -> expcmp oplog expcmplog .
 
     FIN             reduce using rule 26 (expcmplog -> expcmp oplog expcmplog .)
     PCOMA           reduce using rule 26 (expcmplog -> expcmp oplog expcmplog .)
     RPAREN          reduce using rule 26 (expcmplog -> expcmp oplog expcmplog .)
+    ID              reduce using rule 26 (expcmplog -> expcmp oplog expcmplog .)
     RLLAVE          reduce using rule 26 (expcmplog -> expcmp oplog expcmplog .)
     RETURN          reduce using rule 26 (expcmplog -> expcmp oplog expcmplog .)
-    ID              reduce using rule 26 (expcmplog -> expcmp oplog expcmplog .)
-
-
-state 76
-
-    (49) funcion -> FUNCTION NFUNCION ID . LPAREN args RPAREN LLLAVE sentencias RLLAVE
-    (50) funcion -> FUNCTION NFUNCION ID . LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE
-
-    LPAREN          shift and go to state 95
-
-
-state 77
-
-    (54) impresion -> ECHO ID PCOMA .
-
-    FIN             reduce using rule 54 (impresion -> ECHO ID PCOMA .)
-    RLLAVE          reduce using rule 54 (impresion -> ECHO ID PCOMA .)
-    RETURN          reduce using rule 54 (impresion -> ECHO ID PCOMA .)
-    ID              reduce using rule 54 (impresion -> ECHO ID PCOMA .)
 
 
 state 78
 
-    (55) impresion -> ECHO CADENA PCOMA .
+    (49) funcion -> FUNCTION NFUNCION ID . LPAREN args RPAREN LLLAVE sentencias RLLAVE
+    (50) funcion -> FUNCTION NFUNCION ID . LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE
 
-    FIN             reduce using rule 55 (impresion -> ECHO CADENA PCOMA .)
-    RLLAVE          reduce using rule 55 (impresion -> ECHO CADENA PCOMA .)
-    RETURN          reduce using rule 55 (impresion -> ECHO CADENA PCOMA .)
-    ID              reduce using rule 55 (impresion -> ECHO CADENA PCOMA .)
+    LPAREN          shift and go to state 98
 
 
 state 79
 
-    (62) repeticion -> FOR LPAREN ID . ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
+    (54) impresion -> ECHO ID PCOMA .
 
-    ASIGNACION      shift and go to state 96
+    FIN             reduce using rule 54 (impresion -> ECHO ID PCOMA .)
+    ID              reduce using rule 54 (impresion -> ECHO ID PCOMA .)
+    RLLAVE          reduce using rule 54 (impresion -> ECHO ID PCOMA .)
+    RETURN          reduce using rule 54 (impresion -> ECHO ID PCOMA .)
 
 
 state 80
+
+    (55) impresion -> ECHO CADENA PCOMA .
+
+    FIN             reduce using rule 55 (impresion -> ECHO CADENA PCOMA .)
+    ID              reduce using rule 55 (impresion -> ECHO CADENA PCOMA .)
+    RLLAVE          reduce using rule 55 (impresion -> ECHO CADENA PCOMA .)
+    RETURN          reduce using rule 55 (impresion -> ECHO CADENA PCOMA .)
+
+
+state 81
+
+    (62) repeticion -> FOR LPAREN ID . ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
+
+    ASIGNACION      shift and go to state 99
+
+
+state 82
 
     (41) expresionmat -> NUMBER operadormat NUMBER .
 
     FIN             reduce using rule 41 (expresionmat -> NUMBER operadormat NUMBER .)
     PCOMA           reduce using rule 41 (expresionmat -> NUMBER operadormat NUMBER .)
+    ID              reduce using rule 41 (expresionmat -> NUMBER operadormat NUMBER .)
     RLLAVE          reduce using rule 41 (expresionmat -> NUMBER operadormat NUMBER .)
     RETURN          reduce using rule 41 (expresionmat -> NUMBER operadormat NUMBER .)
-    ID              reduce using rule 41 (expresionmat -> NUMBER operadormat NUMBER .)
 
 
-state 81
+state 83
 
     (63) repeticion -> WHILE LPAREN ID . opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
     (17) opcomparacion -> . IGUAL
@@ -1278,59 +1358,66 @@ state 81
     (20) opcomparacion -> . MAYORIGUAL
     (21) opcomparacion -> . MENORIGUAL
 
-    IGUAL           shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
+    IGUAL           shift and go to state 33
+    MAYOR           shift and go to state 34
+    MENOR           shift and go to state 35
+    MAYORIGUAL      shift and go to state 36
+    MENORIGUAL      shift and go to state 37
 
-    opcomparacion                  shift and go to state 97
-
-state 82
-
-    (53) excepcion -> TRY LLLAVE sentencias . RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
-
-    RLLAVE          shift and go to state 98
-
-
-state 83
-
-    (37) sort -> SORT LPAREN ID . RPAREN PCOMA
-
-    RPAREN          shift and go to state 99
-
+    opcomparacion                  shift and go to state 100
 
 state 84
 
-    (9) asignacion -> ID ASIGNACION valor PCOMA .
+    (64) repeticion -> DO LLLAVE sentencias . ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
 
-    FIN             reduce using rule 9 (asignacion -> ID ASIGNACION valor PCOMA .)
-    RLLAVE          reduce using rule 9 (asignacion -> ID ASIGNACION valor PCOMA .)
-    RETURN          reduce using rule 9 (asignacion -> ID ASIGNACION valor PCOMA .)
-    ID              reduce using rule 9 (asignacion -> ID ASIGNACION valor PCOMA .)
+    ID              shift and go to state 101
 
 
 state 85
 
-    (11) asignacion -> ID ASIGNACION estdatos PCOMA .
+    (53) excepcion -> TRY LLLAVE sentencias . RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
 
-    FIN             reduce using rule 11 (asignacion -> ID ASIGNACION estdatos PCOMA .)
-    RLLAVE          reduce using rule 11 (asignacion -> ID ASIGNACION estdatos PCOMA .)
-    RETURN          reduce using rule 11 (asignacion -> ID ASIGNACION estdatos PCOMA .)
-    ID              reduce using rule 11 (asignacion -> ID ASIGNACION estdatos PCOMA .)
+    RLLAVE          shift and go to state 102
 
 
 state 86
 
-    (12) asignacion -> ID ASIGNACION expresion PCOMA .
+    (37) sort -> SORT LPAREN ID . RPAREN PCOMA
 
-    FIN             reduce using rule 12 (asignacion -> ID ASIGNACION expresion PCOMA .)
-    RLLAVE          reduce using rule 12 (asignacion -> ID ASIGNACION expresion PCOMA .)
-    RETURN          reduce using rule 12 (asignacion -> ID ASIGNACION expresion PCOMA .)
-    ID              reduce using rule 12 (asignacion -> ID ASIGNACION expresion PCOMA .)
+    RPAREN          shift and go to state 103
 
 
 state 87
+
+    (9) asignacion -> ID ASIGNACION valor PCOMA .
+
+    FIN             reduce using rule 9 (asignacion -> ID ASIGNACION valor PCOMA .)
+    ID              reduce using rule 9 (asignacion -> ID ASIGNACION valor PCOMA .)
+    RLLAVE          reduce using rule 9 (asignacion -> ID ASIGNACION valor PCOMA .)
+    RETURN          reduce using rule 9 (asignacion -> ID ASIGNACION valor PCOMA .)
+
+
+state 88
+
+    (11) asignacion -> ID ASIGNACION estdatos PCOMA .
+
+    FIN             reduce using rule 11 (asignacion -> ID ASIGNACION estdatos PCOMA .)
+    ID              reduce using rule 11 (asignacion -> ID ASIGNACION estdatos PCOMA .)
+    RLLAVE          reduce using rule 11 (asignacion -> ID ASIGNACION estdatos PCOMA .)
+    RETURN          reduce using rule 11 (asignacion -> ID ASIGNACION estdatos PCOMA .)
+
+
+state 89
+
+    (12) asignacion -> ID ASIGNACION expresion PCOMA .
+
+    FIN             reduce using rule 12 (asignacion -> ID ASIGNACION expresion PCOMA .)
+    ID              reduce using rule 12 (asignacion -> ID ASIGNACION expresion PCOMA .)
+    RLLAVE          reduce using rule 12 (asignacion -> ID ASIGNACION expresion PCOMA .)
+    RETURN          reduce using rule 12 (asignacion -> ID ASIGNACION expresion PCOMA .)
+
+
+state 90
 
     (35) array -> ARRAY LPAREN . valor DOUBLE_ARROW valor RPAREN
     (36) array -> ARRAY LPAREN . valor RPAREN
@@ -1339,94 +1426,94 @@ state 87
     (15) valor -> . CADENA
     (16) valor -> . BOOLEAN
 
-    ID              shift and go to state 39
-    NUMBER          shift and go to state 40
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 41
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    valor                          shift and go to state 100
+    valor                          shift and go to state 104
 
-state 88
+state 91
 
-    (66) heap -> LPAREN ARRAY . LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA
+    (67) heap -> LPAREN ARRAY . LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA
 
-    LPAREN          shift and go to state 101
+    LPAREN          shift and go to state 105
 
 
-state 89
+state 92
 
-    (64) array_map -> ARRAY_MAP LPAREN . funcion COMA array RPAREN PCOMA
+    (65) array_map -> ARRAY_MAP LPAREN . funcion COMA array RPAREN PCOMA
     (48) funcion -> . sort
     (49) funcion -> . FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RLLAVE
     (50) funcion -> . FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE
     (37) sort -> . SORT LPAREN ID RPAREN PCOMA
 
     FUNCTION        shift and go to state 18
-    SORT            shift and go to state 26
+    SORT            shift and go to state 27
 
-    funcion                        shift and go to state 102
+    funcion                        shift and go to state 106
     sort                           shift and go to state 17
 
-state 90
+state 93
 
-    (65) heap -> HEAP DOUBLE_ARROW . INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
+    (66) heap -> HEAP DOUBLE_ARROW . INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
 
-    INSERT          shift and go to state 103
+    INSERT          shift and go to state 107
 
 
-state 91
+state 94
 
     (10) asignacion -> ID REF ID PCOMA .
 
     FIN             reduce using rule 10 (asignacion -> ID REF ID PCOMA .)
+    ID              reduce using rule 10 (asignacion -> ID REF ID PCOMA .)
     RLLAVE          reduce using rule 10 (asignacion -> ID REF ID PCOMA .)
     RETURN          reduce using rule 10 (asignacion -> ID REF ID PCOMA .)
-    ID              reduce using rule 10 (asignacion -> ID REF ID PCOMA .)
 
 
-state 92
+state 95
 
     (31) comparacion -> IF LPAREN expcmp RPAREN . LLLAVE sentencias RLLAVE
     (33) comparacion -> IF LPAREN expcmp RPAREN . LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
     (34) comparacion -> IF LPAREN expcmp RPAREN . LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
 
-    LLLAVE          shift and go to state 104
+    LLLAVE          shift and go to state 108
 
 
-state 93
+state 96
 
     (32) comparacion -> IF LPAREN expcmplog RPAREN . LLLAVE sentencias RLLAVE
 
-    LLLAVE          shift and go to state 105
+    LLLAVE          shift and go to state 109
 
 
-state 94
+state 97
 
     (23) expcmp -> LPAREN valor opcomparacion valor . RPAREN oplog LPAREN valor opcomparacion valor RPAREN
     (24) expcmp -> LPAREN valor opcomparacion valor . RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp
 
-    RPAREN          shift and go to state 106
+    RPAREN          shift and go to state 110
 
 
-state 95
+state 98
 
     (49) funcion -> FUNCTION NFUNCION ID LPAREN . args RPAREN LLLAVE sentencias RLLAVE
     (50) funcion -> FUNCTION NFUNCION ID LPAREN . args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE
     (51) args -> . ID
     (52) args -> . ID args
 
-    ID              shift and go to state 107
+    ID              shift and go to state 111
 
-    args                           shift and go to state 108
+    args                           shift and go to state 112
 
-state 96
+state 99
 
     (62) repeticion -> FOR LPAREN ID ASIGNACION . NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
 
-    NUMBER          shift and go to state 109
+    NUMBER          shift and go to state 113
 
 
-state 97
+state 100
 
     (63) repeticion -> WHILE LPAREN ID opcomparacion . valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
     (13) valor -> . ID
@@ -1434,66 +1521,77 @@ state 97
     (15) valor -> . CADENA
     (16) valor -> . BOOLEAN
 
-    ID              shift and go to state 39
-    NUMBER          shift and go to state 40
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 41
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    valor                          shift and go to state 110
+    valor                          shift and go to state 114
 
-state 98
+state 101
+
+    (64) repeticion -> DO LLLAVE sentencias ID . actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
+    (60) actualizar -> . INCREMENTO
+    (61) actualizar -> . DECREMENTO
+
+    INCREMENTO      shift and go to state 116
+    DECREMENTO      shift and go to state 117
+
+    actualizar                     shift and go to state 115
+
+state 102
 
     (53) excepcion -> TRY LLLAVE sentencias RLLAVE . CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
 
-    CATCH           shift and go to state 111
+    CATCH           shift and go to state 118
 
 
-state 99
+state 103
 
     (37) sort -> SORT LPAREN ID RPAREN . PCOMA
 
-    PCOMA           shift and go to state 112
+    PCOMA           shift and go to state 119
 
 
-state 100
+state 104
 
     (35) array -> ARRAY LPAREN valor . DOUBLE_ARROW valor RPAREN
     (36) array -> ARRAY LPAREN valor . RPAREN
 
-    DOUBLE_ARROW    shift and go to state 113
-    RPAREN          shift and go to state 114
+    DOUBLE_ARROW    shift and go to state 120
+    RPAREN          shift and go to state 121
 
 
-state 101
+state 105
 
-    (66) heap -> LPAREN ARRAY LPAREN . valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA
+    (67) heap -> LPAREN ARRAY LPAREN . valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA
     (13) valor -> . ID
     (14) valor -> . NUMBER
     (15) valor -> . CADENA
     (16) valor -> . BOOLEAN
 
-    ID              shift and go to state 39
-    NUMBER          shift and go to state 40
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 41
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    valor                          shift and go to state 115
+    valor                          shift and go to state 122
 
-state 102
+state 106
 
-    (64) array_map -> ARRAY_MAP LPAREN funcion . COMA array RPAREN PCOMA
+    (65) array_map -> ARRAY_MAP LPAREN funcion . COMA array RPAREN PCOMA
 
-    COMA            shift and go to state 116
-
-
-state 103
-
-    (65) heap -> HEAP DOUBLE_ARROW INSERT . LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
-
-    LPAREN          shift and go to state 117
+    COMA            shift and go to state 123
 
 
-state 104
+state 107
+
+    (66) heap -> HEAP DOUBLE_ARROW INSERT . LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
+
+    LPAREN          shift and go to state 124
+
+
+state 108
 
     (31) comparacion -> IF LPAREN expcmp RPAREN LLLAVE . sentencias RLLAVE
     (33) comparacion -> IF LPAREN expcmp RPAREN LLLAVE . sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
@@ -1520,6 +1618,7 @@ state 104
     (55) impresion -> . ECHO CADENA PCOMA
     (62) repeticion -> . FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
     (63) repeticion -> . WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
+    (64) repeticion -> . DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
     (46) expresion -> . expresionmat
     (47) expresion -> . expcmplog
     (53) excepcion -> . TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
@@ -1541,15 +1640,16 @@ state 104
     ECHO            shift and go to state 19
     FOR             shift and go to state 21
     WHILE           shift and go to state 23
-    TRY             shift and go to state 25
-    SORT            shift and go to state 26
+    DO              shift and go to state 24
+    TRY             shift and go to state 26
+    SORT            shift and go to state 27
     NUMBER          shift and go to state 22
     LPAREN          shift and go to state 14
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
     expcmp                         shift and go to state 15
-    sentencias                     shift and go to state 118
+    sentencias                     shift and go to state 125
     asignacion                     shift and go to state 4
     comparacion                    shift and go to state 5
     funcion                        shift and go to state 6
@@ -1560,9 +1660,9 @@ state 104
     valor                          shift and go to state 12
     expcmplog                      shift and go to state 16
     sort                           shift and go to state 17
-    expresionmat                   shift and go to state 24
+    expresionmat                   shift and go to state 25
 
-state 105
+state 109
 
     (32) comparacion -> IF LPAREN expcmplog RPAREN LLLAVE . sentencias RLLAVE
     (2) sentencias -> . asignacion
@@ -1587,6 +1687,7 @@ state 105
     (55) impresion -> . ECHO CADENA PCOMA
     (62) repeticion -> . FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
     (63) repeticion -> . WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
+    (64) repeticion -> . DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
     (46) expresion -> . expresionmat
     (47) expresion -> . expcmplog
     (53) excepcion -> . TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
@@ -1608,15 +1709,16 @@ state 105
     ECHO            shift and go to state 19
     FOR             shift and go to state 21
     WHILE           shift and go to state 23
-    TRY             shift and go to state 25
-    SORT            shift and go to state 26
+    DO              shift and go to state 24
+    TRY             shift and go to state 26
+    SORT            shift and go to state 27
     NUMBER          shift and go to state 22
     LPAREN          shift and go to state 14
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
     expcmplog                      shift and go to state 16
-    sentencias                     shift and go to state 119
+    sentencias                     shift and go to state 126
     asignacion                     shift and go to state 4
     comparacion                    shift and go to state 5
     funcion                        shift and go to state 6
@@ -1627,9 +1729,9 @@ state 105
     valor                          shift and go to state 12
     expcmp                         shift and go to state 15
     sort                           shift and go to state 17
-    expresionmat                   shift and go to state 24
+    expresionmat                   shift and go to state 25
 
-state 106
+state 110
 
     (23) expcmp -> LPAREN valor opcomparacion valor RPAREN . oplog LPAREN valor opcomparacion valor RPAREN
     (24) expcmp -> LPAREN valor opcomparacion valor RPAREN . oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp
@@ -1638,14 +1740,14 @@ state 106
     (29) oplog -> . AND
     (30) oplog -> . OR
 
-    BOOLEAN_OR      shift and go to state 42
-    BOOLEAN_AND     shift and go to state 43
-    AND             shift and go to state 44
-    OR              shift and go to state 45
+    BOOLEAN_OR      shift and go to state 43
+    BOOLEAN_AND     shift and go to state 44
+    AND             shift and go to state 45
+    OR              shift and go to state 46
 
-    oplog                          shift and go to state 120
+    oplog                          shift and go to state 127
 
-state 107
+state 111
 
     (51) args -> ID .
     (52) args -> ID . args
@@ -1653,51 +1755,74 @@ state 107
     (52) args -> . ID args
 
     RPAREN          reduce using rule 51 (args -> ID .)
-    ID              shift and go to state 107
+    ID              shift and go to state 111
 
-    args                           shift and go to state 121
+    args                           shift and go to state 128
 
-state 108
+state 112
 
     (49) funcion -> FUNCTION NFUNCION ID LPAREN args . RPAREN LLLAVE sentencias RLLAVE
     (50) funcion -> FUNCTION NFUNCION ID LPAREN args . RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE
 
-    RPAREN          shift and go to state 122
+    RPAREN          shift and go to state 129
 
 
-state 109
+state 113
 
     (62) repeticion -> FOR LPAREN ID ASIGNACION NUMBER . PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
 
-    PCOMA           shift and go to state 123
+    PCOMA           shift and go to state 130
 
 
-state 110
+state 114
 
     (63) repeticion -> WHILE LPAREN ID opcomparacion valor . RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
 
-    RPAREN          shift and go to state 124
+    RPAREN          shift and go to state 131
 
 
-state 111
+state 115
+
+    (64) repeticion -> DO LLLAVE sentencias ID actualizar . PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
+
+    PCOMA           shift and go to state 132
+
+
+state 116
+
+    (60) actualizar -> INCREMENTO .
+
+    PCOMA           reduce using rule 60 (actualizar -> INCREMENTO .)
+    RPAREN          reduce using rule 60 (actualizar -> INCREMENTO .)
+
+
+state 117
+
+    (61) actualizar -> DECREMENTO .
+
+    PCOMA           reduce using rule 61 (actualizar -> DECREMENTO .)
+    RPAREN          reduce using rule 61 (actualizar -> DECREMENTO .)
+
+
+state 118
 
     (53) excepcion -> TRY LLLAVE sentencias RLLAVE CATCH . LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
 
-    LPAREN          shift and go to state 125
+    LPAREN          shift and go to state 133
 
 
-state 112
+state 119
 
     (37) sort -> SORT LPAREN ID RPAREN PCOMA .
 
     FIN             reduce using rule 37 (sort -> SORT LPAREN ID RPAREN PCOMA .)
+    ID              reduce using rule 37 (sort -> SORT LPAREN ID RPAREN PCOMA .)
     RLLAVE          reduce using rule 37 (sort -> SORT LPAREN ID RPAREN PCOMA .)
     COMA            reduce using rule 37 (sort -> SORT LPAREN ID RPAREN PCOMA .)
     RETURN          reduce using rule 37 (sort -> SORT LPAREN ID RPAREN PCOMA .)
-    ID              reduce using rule 37 (sort -> SORT LPAREN ID RPAREN PCOMA .)
 
 
-state 113
+state 120
 
     (35) array -> ARRAY LPAREN valor DOUBLE_ARROW . valor RPAREN
     (13) valor -> . ID
@@ -1705,14 +1830,14 @@ state 113
     (15) valor -> . CADENA
     (16) valor -> . BOOLEAN
 
-    ID              shift and go to state 39
-    NUMBER          shift and go to state 40
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 41
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    valor                          shift and go to state 126
+    valor                          shift and go to state 134
 
-state 114
+state 121
 
     (36) array -> ARRAY LPAREN valor RPAREN .
 
@@ -1720,143 +1845,150 @@ state 114
     RPAREN          reduce using rule 36 (array -> ARRAY LPAREN valor RPAREN .)
 
 
-state 115
+state 122
 
-    (66) heap -> LPAREN ARRAY LPAREN valor . DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA
+    (67) heap -> LPAREN ARRAY LPAREN valor . DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA
 
-    DOUBLE_ARROW    shift and go to state 127
+    DOUBLE_ARROW    shift and go to state 135
 
 
-state 116
+state 123
 
-    (64) array_map -> ARRAY_MAP LPAREN funcion COMA . array RPAREN PCOMA
+    (65) array_map -> ARRAY_MAP LPAREN funcion COMA . array RPAREN PCOMA
     (35) array -> . ARRAY LPAREN valor DOUBLE_ARROW valor RPAREN
     (36) array -> . ARRAY LPAREN valor RPAREN
 
-    ARRAY           shift and go to state 65
+    ARRAY           shift and go to state 67
 
-    array                          shift and go to state 128
+    array                          shift and go to state 136
 
-state 117
+state 124
 
-    (65) heap -> HEAP DOUBLE_ARROW INSERT LPAREN . LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
+    (66) heap -> HEAP DOUBLE_ARROW INSERT LPAREN . LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
 
-    LCORCH          shift and go to state 129
+    LCORCH          shift and go to state 137
 
 
-state 118
+state 125
 
     (31) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias . RLLAVE
     (33) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias . RLLAVE ELSE LLLAVE sentencias RLLAVE
     (34) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias . RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
 
-    RLLAVE          shift and go to state 130
+    RLLAVE          shift and go to state 138
 
 
-state 119
+state 126
 
     (32) comparacion -> IF LPAREN expcmplog RPAREN LLLAVE sentencias . RLLAVE
 
-    RLLAVE          shift and go to state 131
+    RLLAVE          shift and go to state 139
 
 
-state 120
+state 127
 
     (23) expcmp -> LPAREN valor opcomparacion valor RPAREN oplog . LPAREN valor opcomparacion valor RPAREN
     (24) expcmp -> LPAREN valor opcomparacion valor RPAREN oplog . LPAREN valor opcomparacion valor RPAREN oplog expcmp
 
-    LPAREN          shift and go to state 132
+    LPAREN          shift and go to state 140
 
 
-state 121
+state 128
 
     (52) args -> ID args .
 
     RPAREN          reduce using rule 52 (args -> ID args .)
 
 
-state 122
+state 129
 
     (49) funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN . LLLAVE sentencias RLLAVE
     (50) funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN . LLLAVE sentencias RETURN valor PCOMA RLLAVE
 
-    LLLAVE          shift and go to state 133
-
-
-state 123
-
-    (62) repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA . ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
-
-    ID              shift and go to state 134
-
-
-state 124
-
-    (63) repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN . LLLAVE sentencias ID actualizar PCOMA RLLAVE
-
-    LLLAVE          shift and go to state 135
-
-
-state 125
-
-    (53) excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN . EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
-
-    EXCEPTION       shift and go to state 136
-
-
-state 126
-
-    (35) array -> ARRAY LPAREN valor DOUBLE_ARROW valor . RPAREN
-
-    RPAREN          shift and go to state 137
-
-
-state 127
-
-    (66) heap -> LPAREN ARRAY LPAREN valor DOUBLE_ARROW . NUMBER RPAREN RPAREN PCOMA
-
-    NUMBER          shift and go to state 138
-
-
-state 128
-
-    (64) array_map -> ARRAY_MAP LPAREN funcion COMA array . RPAREN PCOMA
-
-    RPAREN          shift and go to state 139
-
-
-state 129
-
-    (65) heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH . NUMBER COMA NUMBER RCORCH RPAREN PCOMA
-
-    NUMBER          shift and go to state 140
+    LLLAVE          shift and go to state 141
 
 
 state 130
+
+    (62) repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA . ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
+
+    ID              shift and go to state 142
+
+
+state 131
+
+    (63) repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN . LLLAVE sentencias ID actualizar PCOMA RLLAVE
+
+    LLLAVE          shift and go to state 143
+
+
+state 132
+
+    (64) repeticion -> DO LLLAVE sentencias ID actualizar PCOMA . RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
+
+    RLLAVE          shift and go to state 144
+
+
+state 133
+
+    (53) excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN . EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
+
+    EXCEPTION       shift and go to state 145
+
+
+state 134
+
+    (35) array -> ARRAY LPAREN valor DOUBLE_ARROW valor . RPAREN
+
+    RPAREN          shift and go to state 146
+
+
+state 135
+
+    (67) heap -> LPAREN ARRAY LPAREN valor DOUBLE_ARROW . NUMBER RPAREN RPAREN PCOMA
+
+    NUMBER          shift and go to state 147
+
+
+state 136
+
+    (65) array_map -> ARRAY_MAP LPAREN funcion COMA array . RPAREN PCOMA
+
+    RPAREN          shift and go to state 148
+
+
+state 137
+
+    (66) heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH . NUMBER COMA NUMBER RCORCH RPAREN PCOMA
+
+    NUMBER          shift and go to state 149
+
+
+state 138
 
     (31) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE .
     (33) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE . ELSE LLLAVE sentencias RLLAVE
     (34) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE . ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
 
     FIN             reduce using rule 31 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE .)
+    ID              reduce using rule 31 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE .)
     RLLAVE          reduce using rule 31 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE .)
     RETURN          reduce using rule 31 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE .)
-    ID              reduce using rule 31 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE .)
-    ELSE            shift and go to state 141
-    ELSEIF          shift and go to state 142
+    ELSE            shift and go to state 150
+    ELSEIF          shift and go to state 151
 
 
-state 131
+state 139
 
     (32) comparacion -> IF LPAREN expcmplog RPAREN LLLAVE sentencias RLLAVE .
 
     FIN             reduce using rule 32 (comparacion -> IF LPAREN expcmplog RPAREN LLLAVE sentencias RLLAVE .)
+    ID              reduce using rule 32 (comparacion -> IF LPAREN expcmplog RPAREN LLLAVE sentencias RLLAVE .)
     RLLAVE          reduce using rule 32 (comparacion -> IF LPAREN expcmplog RPAREN LLLAVE sentencias RLLAVE .)
     RETURN          reduce using rule 32 (comparacion -> IF LPAREN expcmplog RPAREN LLLAVE sentencias RLLAVE .)
-    ID              reduce using rule 32 (comparacion -> IF LPAREN expcmplog RPAREN LLLAVE sentencias RLLAVE .)
 
 
-state 132
+state 140
 
     (23) expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN . valor opcomparacion valor RPAREN
     (24) expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN . valor opcomparacion valor RPAREN oplog expcmp
@@ -1865,14 +1997,14 @@ state 132
     (15) valor -> . CADENA
     (16) valor -> . BOOLEAN
 
-    ID              shift and go to state 39
-    NUMBER          shift and go to state 40
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 41
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    valor                          shift and go to state 143
+    valor                          shift and go to state 152
 
-state 133
+state 141
 
     (49) funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE . sentencias RLLAVE
     (50) funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE . sentencias RETURN valor PCOMA RLLAVE
@@ -1898,6 +2030,7 @@ state 133
     (55) impresion -> . ECHO CADENA PCOMA
     (62) repeticion -> . FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
     (63) repeticion -> . WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
+    (64) repeticion -> . DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
     (46) expresion -> . expresionmat
     (47) expresion -> . expcmplog
     (53) excepcion -> . TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
@@ -1919,14 +2052,15 @@ state 133
     ECHO            shift and go to state 19
     FOR             shift and go to state 21
     WHILE           shift and go to state 23
-    TRY             shift and go to state 25
-    SORT            shift and go to state 26
+    DO              shift and go to state 24
+    TRY             shift and go to state 26
+    SORT            shift and go to state 27
     NUMBER          shift and go to state 22
     LPAREN          shift and go to state 14
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    sentencias                     shift and go to state 144
+    sentencias                     shift and go to state 153
     valor                          shift and go to state 12
     asignacion                     shift and go to state 4
     comparacion                    shift and go to state 5
@@ -1938,9 +2072,9 @@ state 133
     expcmp                         shift and go to state 15
     expcmplog                      shift and go to state 16
     sort                           shift and go to state 17
-    expresionmat                   shift and go to state 24
+    expresionmat                   shift and go to state 25
 
-state 134
+state 142
 
     (62) repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID . repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
     (56) repeticionrep -> . MAYOR
@@ -1948,14 +2082,14 @@ state 134
     (58) repeticionrep -> . MAYORIGUAL
     (59) repeticionrep -> . MENORIGUAL
 
-    MAYOR           shift and go to state 146
-    MENOR           shift and go to state 147
-    MAYORIGUAL      shift and go to state 148
-    MENORIGUAL      shift and go to state 149
+    MAYOR           shift and go to state 155
+    MENOR           shift and go to state 156
+    MAYORIGUAL      shift and go to state 157
+    MENORIGUAL      shift and go to state 158
 
-    repeticionrep                  shift and go to state 145
+    repeticionrep                  shift and go to state 154
 
-state 135
+state 143
 
     (63) repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE . sentencias ID actualizar PCOMA RLLAVE
     (2) sentencias -> . asignacion
@@ -1980,6 +2114,7 @@ state 135
     (55) impresion -> . ECHO CADENA PCOMA
     (62) repeticion -> . FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
     (63) repeticion -> . WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
+    (64) repeticion -> . DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
     (46) expresion -> . expresionmat
     (47) expresion -> . expcmplog
     (53) excepcion -> . TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
@@ -2001,15 +2136,16 @@ state 135
     ECHO            shift and go to state 19
     FOR             shift and go to state 21
     WHILE           shift and go to state 23
-    TRY             shift and go to state 25
-    SORT            shift and go to state 26
+    DO              shift and go to state 24
+    TRY             shift and go to state 26
+    SORT            shift and go to state 27
     NUMBER          shift and go to state 22
     LPAREN          shift and go to state 14
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
     valor                          shift and go to state 12
-    sentencias                     shift and go to state 150
+    sentencias                     shift and go to state 159
     asignacion                     shift and go to state 4
     comparacion                    shift and go to state 5
     funcion                        shift and go to state 6
@@ -2020,16 +2156,23 @@ state 135
     expcmp                         shift and go to state 15
     expcmplog                      shift and go to state 16
     sort                           shift and go to state 17
-    expresionmat                   shift and go to state 24
+    expresionmat                   shift and go to state 25
 
-state 136
+state 144
+
+    (64) repeticion -> DO LLLAVE sentencias ID actualizar PCOMA RLLAVE . WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
+
+    WHILE           shift and go to state 160
+
+
+state 145
 
     (53) excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION . ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
 
-    ID              shift and go to state 151
+    ID              shift and go to state 161
 
 
-state 137
+state 146
 
     (35) array -> ARRAY LPAREN valor DOUBLE_ARROW valor RPAREN .
 
@@ -2037,42 +2180,42 @@ state 137
     RPAREN          reduce using rule 35 (array -> ARRAY LPAREN valor DOUBLE_ARROW valor RPAREN .)
 
 
-state 138
+state 147
 
-    (66) heap -> LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER . RPAREN RPAREN PCOMA
+    (67) heap -> LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER . RPAREN RPAREN PCOMA
 
-    RPAREN          shift and go to state 152
-
-
-state 139
-
-    (64) array_map -> ARRAY_MAP LPAREN funcion COMA array RPAREN . PCOMA
-
-    PCOMA           shift and go to state 153
+    RPAREN          shift and go to state 162
 
 
-state 140
+state 148
 
-    (65) heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER . COMA NUMBER RCORCH RPAREN PCOMA
+    (65) array_map -> ARRAY_MAP LPAREN funcion COMA array RPAREN . PCOMA
 
-    COMA            shift and go to state 154
+    PCOMA           shift and go to state 163
 
 
-state 141
+state 149
+
+    (66) heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER . COMA NUMBER RCORCH RPAREN PCOMA
+
+    COMA            shift and go to state 164
+
+
+state 150
 
     (33) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE . LLLAVE sentencias RLLAVE
 
-    LLLAVE          shift and go to state 155
+    LLLAVE          shift and go to state 165
 
 
-state 142
+state 151
 
     (34) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF . LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
 
-    LPAREN          shift and go to state 156
+    LPAREN          shift and go to state 166
 
 
-state 143
+state 152
 
     (23) expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor . opcomparacion valor RPAREN
     (24) expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor . opcomparacion valor RPAREN oplog expcmp
@@ -2082,94 +2225,101 @@ state 143
     (20) opcomparacion -> . MAYORIGUAL
     (21) opcomparacion -> . MENORIGUAL
 
-    IGUAL           shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
+    IGUAL           shift and go to state 33
+    MAYOR           shift and go to state 34
+    MENOR           shift and go to state 35
+    MAYORIGUAL      shift and go to state 36
+    MENORIGUAL      shift and go to state 37
 
-    opcomparacion                  shift and go to state 157
+    opcomparacion                  shift and go to state 167
 
-state 144
+state 153
 
     (49) funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias . RLLAVE
     (50) funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias . RETURN valor PCOMA RLLAVE
 
-    RLLAVE          shift and go to state 158
-    RETURN          shift and go to state 159
+    RLLAVE          shift and go to state 168
+    RETURN          shift and go to state 169
 
 
-state 145
+state 154
 
     (62) repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep . NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
 
-    NUMBER          shift and go to state 160
+    NUMBER          shift and go to state 170
 
 
-state 146
+state 155
 
     (56) repeticionrep -> MAYOR .
 
     NUMBER          reduce using rule 56 (repeticionrep -> MAYOR .)
 
 
-state 147
+state 156
 
     (57) repeticionrep -> MENOR .
 
     NUMBER          reduce using rule 57 (repeticionrep -> MENOR .)
 
 
-state 148
+state 157
 
     (58) repeticionrep -> MAYORIGUAL .
 
     NUMBER          reduce using rule 58 (repeticionrep -> MAYORIGUAL .)
 
 
-state 149
+state 158
 
     (59) repeticionrep -> MENORIGUAL .
 
     NUMBER          reduce using rule 59 (repeticionrep -> MENORIGUAL .)
 
 
-state 150
+state 159
 
     (63) repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias . ID actualizar PCOMA RLLAVE
 
-    ID              shift and go to state 161
+    ID              shift and go to state 171
 
 
-state 151
+state 160
+
+    (64) repeticion -> DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE . LPAREN ID opcomparacion valor RPAREN PCOMA
+
+    LPAREN          shift and go to state 172
+
+
+state 161
 
     (53) excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID . RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
 
-    RPAREN          shift and go to state 162
+    RPAREN          shift and go to state 173
 
 
-state 152
+state 162
 
-    (66) heap -> LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN . RPAREN PCOMA
+    (67) heap -> LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN . RPAREN PCOMA
 
-    RPAREN          shift and go to state 163
-
-
-state 153
-
-    (64) array_map -> ARRAY_MAP LPAREN funcion COMA array RPAREN PCOMA .
-
-    PCOMA           reduce using rule 64 (array_map -> ARRAY_MAP LPAREN funcion COMA array RPAREN PCOMA .)
+    RPAREN          shift and go to state 174
 
 
-state 154
+state 163
 
-    (65) heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA . NUMBER RCORCH RPAREN PCOMA
+    (65) array_map -> ARRAY_MAP LPAREN funcion COMA array RPAREN PCOMA .
 
-    NUMBER          shift and go to state 164
+    PCOMA           reduce using rule 65 (array_map -> ARRAY_MAP LPAREN funcion COMA array RPAREN PCOMA .)
 
 
-state 155
+state 164
+
+    (66) heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA . NUMBER RCORCH RPAREN PCOMA
+
+    NUMBER          shift and go to state 175
+
+
+state 165
 
     (33) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE . sentencias RLLAVE
     (2) sentencias -> . asignacion
@@ -2194,6 +2344,7 @@ state 155
     (55) impresion -> . ECHO CADENA PCOMA
     (62) repeticion -> . FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
     (63) repeticion -> . WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
+    (64) repeticion -> . DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
     (46) expresion -> . expresionmat
     (47) expresion -> . expcmplog
     (53) excepcion -> . TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
@@ -2215,15 +2366,16 @@ state 155
     ECHO            shift and go to state 19
     FOR             shift and go to state 21
     WHILE           shift and go to state 23
-    TRY             shift and go to state 25
-    SORT            shift and go to state 26
+    DO              shift and go to state 24
+    TRY             shift and go to state 26
+    SORT            shift and go to state 27
     NUMBER          shift and go to state 22
     LPAREN          shift and go to state 14
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
     expcmp                         shift and go to state 15
-    sentencias                     shift and go to state 165
+    sentencias                     shift and go to state 176
     asignacion                     shift and go to state 4
     comparacion                    shift and go to state 5
     funcion                        shift and go to state 6
@@ -2234,9 +2386,9 @@ state 155
     valor                          shift and go to state 12
     expcmplog                      shift and go to state 16
     sort                           shift and go to state 17
-    expresionmat                   shift and go to state 24
+    expresionmat                   shift and go to state 25
 
-state 156
+state 166
 
     (34) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN . expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
     (22) expcmp -> . valor opcomparacion valor
@@ -2248,15 +2400,15 @@ state 156
     (16) valor -> . BOOLEAN
 
     LPAREN          shift and go to state 14
-    ID              shift and go to state 39
-    NUMBER          shift and go to state 40
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 41
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    expcmp                         shift and go to state 166
+    expcmp                         shift and go to state 177
     valor                          shift and go to state 12
 
-state 157
+state 167
 
     (23) expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion . valor RPAREN
     (24) expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion . valor RPAREN oplog expcmp
@@ -2265,25 +2417,25 @@ state 157
     (15) valor -> . CADENA
     (16) valor -> . BOOLEAN
 
-    ID              shift and go to state 39
-    NUMBER          shift and go to state 40
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 41
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    valor                          shift and go to state 167
+    valor                          shift and go to state 178
 
-state 158
+state 168
 
     (49) funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RLLAVE .
 
     FIN             reduce using rule 49 (funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RLLAVE .)
+    ID              reduce using rule 49 (funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RLLAVE .)
     RLLAVE          reduce using rule 49 (funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RLLAVE .)
     COMA            reduce using rule 49 (funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RLLAVE .)
     RETURN          reduce using rule 49 (funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RLLAVE .)
-    ID              reduce using rule 49 (funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RLLAVE .)
 
 
-state 159
+state 169
 
     (50) funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RETURN . valor PCOMA RLLAVE
     (13) valor -> . ID
@@ -2291,150 +2443,158 @@ state 159
     (15) valor -> . CADENA
     (16) valor -> . BOOLEAN
 
-    ID              shift and go to state 39
-    NUMBER          shift and go to state 40
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 41
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    valor                          shift and go to state 168
+    valor                          shift and go to state 179
 
-state 160
+state 170
 
     (62) repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER . PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
 
-    PCOMA           shift and go to state 169
+    PCOMA           shift and go to state 180
 
 
-state 161
+state 171
 
     (63) repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID . actualizar PCOMA RLLAVE
     (60) actualizar -> . INCREMENTO
     (61) actualizar -> . DECREMENTO
 
-    INCREMENTO      shift and go to state 171
-    DECREMENTO      shift and go to state 172
+    INCREMENTO      shift and go to state 116
+    DECREMENTO      shift and go to state 117
 
-    actualizar                     shift and go to state 170
-
-state 162
-
-    (53) excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN . LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
-
-    LLLAVE          shift and go to state 173
-
-
-state 163
-
-    (66) heap -> LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN . PCOMA
-
-    PCOMA           shift and go to state 174
-
-
-state 164
-
-    (65) heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER . RCORCH RPAREN PCOMA
-
-    RCORCH          shift and go to state 175
-
-
-state 165
-
-    (33) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias . RLLAVE
-
-    RLLAVE          shift and go to state 176
-
-
-state 166
-
-    (34) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp . RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
-
-    RPAREN          shift and go to state 177
-
-
-state 167
-
-    (23) expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor . RPAREN
-    (24) expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor . RPAREN oplog expcmp
-
-    RPAREN          shift and go to state 178
-
-
-state 168
-
-    (50) funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RETURN valor . PCOMA RLLAVE
-
-    PCOMA           shift and go to state 179
-
-
-state 169
-
-    (62) repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA . ID actualizar RPAREN LLLAVE sentencias RLLAVE
-
-    ID              shift and go to state 180
-
-
-state 170
-
-    (63) repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar . PCOMA RLLAVE
-
-    PCOMA           shift and go to state 181
-
-
-state 171
-
-    (60) actualizar -> INCREMENTO .
-
-    PCOMA           reduce using rule 60 (actualizar -> INCREMENTO .)
-    RPAREN          reduce using rule 60 (actualizar -> INCREMENTO .)
-
+    actualizar                     shift and go to state 181
 
 state 172
 
-    (61) actualizar -> DECREMENTO .
+    (64) repeticion -> DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN . ID opcomparacion valor RPAREN PCOMA
 
-    PCOMA           reduce using rule 61 (actualizar -> DECREMENTO .)
-    RPAREN          reduce using rule 61 (actualizar -> DECREMENTO .)
+    ID              shift and go to state 182
 
 
 state 173
 
-    (53) excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE . ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
+    (53) excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN . LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
 
-    ECHO            shift and go to state 182
+    LLLAVE          shift and go to state 183
 
 
 state 174
 
-    (66) heap -> LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA .
+    (67) heap -> LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN . PCOMA
 
-    PCOMA           reduce using rule 66 (heap -> LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA .)
+    PCOMA           shift and go to state 184
 
 
 state 175
 
-    (65) heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH . RPAREN PCOMA
+    (66) heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER . RCORCH RPAREN PCOMA
 
-    RPAREN          shift and go to state 183
+    RCORCH          shift and go to state 185
 
 
 state 176
 
-    (33) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .
+    (33) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias . RLLAVE
 
-    FIN             reduce using rule 33 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
-    RLLAVE          reduce using rule 33 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
-    RETURN          reduce using rule 33 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
-    ID              reduce using rule 33 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
+    RLLAVE          shift and go to state 186
 
 
 state 177
 
-    (34) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN . LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+    (34) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp . RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
 
-    LLLAVE          shift and go to state 184
+    RPAREN          shift and go to state 187
 
 
 state 178
+
+    (23) expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor . RPAREN
+    (24) expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor . RPAREN oplog expcmp
+
+    RPAREN          shift and go to state 188
+
+
+state 179
+
+    (50) funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RETURN valor . PCOMA RLLAVE
+
+    PCOMA           shift and go to state 189
+
+
+state 180
+
+    (62) repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA . ID actualizar RPAREN LLLAVE sentencias RLLAVE
+
+    ID              shift and go to state 190
+
+
+state 181
+
+    (63) repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar . PCOMA RLLAVE
+
+    PCOMA           shift and go to state 191
+
+
+state 182
+
+    (64) repeticion -> DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID . opcomparacion valor RPAREN PCOMA
+    (17) opcomparacion -> . IGUAL
+    (18) opcomparacion -> . MAYOR
+    (19) opcomparacion -> . MENOR
+    (20) opcomparacion -> . MAYORIGUAL
+    (21) opcomparacion -> . MENORIGUAL
+
+    IGUAL           shift and go to state 33
+    MAYOR           shift and go to state 34
+    MENOR           shift and go to state 35
+    MAYORIGUAL      shift and go to state 36
+    MENORIGUAL      shift and go to state 37
+
+    opcomparacion                  shift and go to state 192
+
+state 183
+
+    (53) excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE . ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
+
+    ECHO            shift and go to state 193
+
+
+state 184
+
+    (67) heap -> LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA .
+
+    PCOMA           reduce using rule 67 (heap -> LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA .)
+
+
+state 185
+
+    (66) heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH . RPAREN PCOMA
+
+    RPAREN          shift and go to state 194
+
+
+state 186
+
+    (33) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .
+
+    FIN             reduce using rule 33 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
+    ID              reduce using rule 33 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
+    RLLAVE          reduce using rule 33 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
+    RETURN          reduce using rule 33 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
+
+
+state 187
+
+    (34) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN . LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
+
+    LLLAVE          shift and go to state 195
+
+
+state 188
 
     (23) expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN .
     (24) expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN . oplog expcmp
@@ -2450,61 +2610,76 @@ state 178
     RPAREN          reduce using rule 23 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN .)
     FIN             reduce using rule 23 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN .)
     PCOMA           reduce using rule 23 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN .)
+    ID              reduce using rule 23 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN .)
     RLLAVE          reduce using rule 23 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN .)
     RETURN          reduce using rule 23 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN .)
-    ID              reduce using rule 23 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN .)
-    BOOLEAN_OR      shift and go to state 42
-    BOOLEAN_AND     shift and go to state 43
-    AND             shift and go to state 44
-    OR              shift and go to state 45
+    BOOLEAN_OR      shift and go to state 43
+    BOOLEAN_AND     shift and go to state 44
+    AND             shift and go to state 45
+    OR              shift and go to state 46
 
   ! BOOLEAN_OR      [ reduce using rule 23 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN .) ]
   ! BOOLEAN_AND     [ reduce using rule 23 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN .) ]
   ! AND             [ reduce using rule 23 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN .) ]
   ! OR              [ reduce using rule 23 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN .) ]
 
-    oplog                          shift and go to state 185
+    oplog                          shift and go to state 196
 
-state 179
+state 189
 
     (50) funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA . RLLAVE
 
-    RLLAVE          shift and go to state 186
+    RLLAVE          shift and go to state 197
 
 
-state 180
+state 190
 
     (62) repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID . actualizar RPAREN LLLAVE sentencias RLLAVE
     (60) actualizar -> . INCREMENTO
     (61) actualizar -> . DECREMENTO
 
-    INCREMENTO      shift and go to state 171
-    DECREMENTO      shift and go to state 172
+    INCREMENTO      shift and go to state 116
+    DECREMENTO      shift and go to state 117
 
-    actualizar                     shift and go to state 187
+    actualizar                     shift and go to state 198
 
-state 181
+state 191
 
     (63) repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA . RLLAVE
 
-    RLLAVE          shift and go to state 188
+    RLLAVE          shift and go to state 199
 
 
-state 182
+state 192
+
+    (64) repeticion -> DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion . valor RPAREN PCOMA
+    (13) valor -> . ID
+    (14) valor -> . NUMBER
+    (15) valor -> . CADENA
+    (16) valor -> . BOOLEAN
+
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 41
+    CADENA          shift and go to state 20
+    BOOLEAN         shift and go to state 28
+
+    valor                          shift and go to state 200
+
+state 193
 
     (53) excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO . CADENA COMA ID FLECHA GETMESSAGE RLLAVE
 
-    CADENA          shift and go to state 189
+    CADENA          shift and go to state 201
 
 
-state 183
+state 194
 
-    (65) heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN . PCOMA
+    (66) heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN . PCOMA
 
-    PCOMA           shift and go to state 190
+    PCOMA           shift and go to state 202
 
 
-state 184
+state 195
 
     (34) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE . sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE
     (2) sentencias -> . asignacion
@@ -2529,6 +2704,7 @@ state 184
     (55) impresion -> . ECHO CADENA PCOMA
     (62) repeticion -> . FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
     (63) repeticion -> . WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
+    (64) repeticion -> . DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
     (46) expresion -> . expresionmat
     (47) expresion -> . expcmplog
     (53) excepcion -> . TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
@@ -2550,15 +2726,16 @@ state 184
     ECHO            shift and go to state 19
     FOR             shift and go to state 21
     WHILE           shift and go to state 23
-    TRY             shift and go to state 25
-    SORT            shift and go to state 26
+    DO              shift and go to state 24
+    TRY             shift and go to state 26
+    SORT            shift and go to state 27
     NUMBER          shift and go to state 22
     LPAREN          shift and go to state 14
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
     expcmp                         shift and go to state 15
-    sentencias                     shift and go to state 191
+    sentencias                     shift and go to state 203
     asignacion                     shift and go to state 4
     comparacion                    shift and go to state 5
     funcion                        shift and go to state 6
@@ -2569,9 +2746,9 @@ state 184
     valor                          shift and go to state 12
     expcmplog                      shift and go to state 16
     sort                           shift and go to state 17
-    expresionmat                   shift and go to state 24
+    expresionmat                   shift and go to state 25
 
-state 185
+state 196
 
     (24) expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog . expcmp
     (22) expcmp -> . valor opcomparacion valor
@@ -2583,64 +2760,71 @@ state 185
     (16) valor -> . BOOLEAN
 
     LPAREN          shift and go to state 14
-    ID              shift and go to state 39
-    NUMBER          shift and go to state 40
+    ID              shift and go to state 40
+    NUMBER          shift and go to state 41
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
     valor                          shift and go to state 12
-    expcmp                         shift and go to state 192
+    expcmp                         shift and go to state 204
 
-state 186
+state 197
 
     (50) funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE .
 
     FIN             reduce using rule 50 (funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE .)
+    ID              reduce using rule 50 (funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE .)
     RLLAVE          reduce using rule 50 (funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE .)
     COMA            reduce using rule 50 (funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE .)
     RETURN          reduce using rule 50 (funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE .)
-    ID              reduce using rule 50 (funcion -> FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE .)
 
 
-state 187
+state 198
 
     (62) repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar . RPAREN LLLAVE sentencias RLLAVE
 
-    RPAREN          shift and go to state 193
+    RPAREN          shift and go to state 205
 
 
-state 188
+state 199
 
     (63) repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE .
 
     FIN             reduce using rule 63 (repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE .)
+    ID              reduce using rule 63 (repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE .)
     RLLAVE          reduce using rule 63 (repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE .)
     RETURN          reduce using rule 63 (repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE .)
-    ID              reduce using rule 63 (repeticion -> WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE .)
 
 
-state 189
+state 200
+
+    (64) repeticion -> DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor . RPAREN PCOMA
+
+    RPAREN          shift and go to state 206
+
+
+state 201
 
     (53) excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA . COMA ID FLECHA GETMESSAGE RLLAVE
 
-    COMA            shift and go to state 194
+    COMA            shift and go to state 207
 
 
-state 190
+state 202
 
-    (65) heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA .
+    (66) heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA .
 
-    PCOMA           reduce using rule 65 (heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA .)
+    PCOMA           reduce using rule 66 (heap -> HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA .)
 
 
-state 191
+state 203
 
     (34) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias . RLLAVE ELSE LLLAVE sentencias RLLAVE
 
-    RLLAVE          shift and go to state 195
+    RLLAVE          shift and go to state 208
 
 
-state 192
+state 204
 
     (24) expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp .
 
@@ -2651,33 +2835,40 @@ state 192
     RPAREN          reduce using rule 24 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp .)
     FIN             reduce using rule 24 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp .)
     PCOMA           reduce using rule 24 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp .)
+    ID              reduce using rule 24 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp .)
     RLLAVE          reduce using rule 24 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp .)
     RETURN          reduce using rule 24 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp .)
-    ID              reduce using rule 24 (expcmp -> LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp .)
 
 
-state 193
+state 205
 
     (62) repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN . LLLAVE sentencias RLLAVE
 
-    LLLAVE          shift and go to state 196
+    LLLAVE          shift and go to state 209
 
 
-state 194
+state 206
+
+    (64) repeticion -> DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN . PCOMA
+
+    PCOMA           shift and go to state 210
+
+
+state 207
 
     (53) excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA . ID FLECHA GETMESSAGE RLLAVE
 
-    ID              shift and go to state 197
+    ID              shift and go to state 211
 
 
-state 195
+state 208
 
     (34) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE . ELSE LLLAVE sentencias RLLAVE
 
-    ELSE            shift and go to state 198
+    ELSE            shift and go to state 212
 
 
-state 196
+state 209
 
     (62) repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE . sentencias RLLAVE
     (2) sentencias -> . asignacion
@@ -2702,6 +2893,7 @@ state 196
     (55) impresion -> . ECHO CADENA PCOMA
     (62) repeticion -> . FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
     (63) repeticion -> . WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
+    (64) repeticion -> . DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
     (46) expresion -> . expresionmat
     (47) expresion -> . expcmplog
     (53) excepcion -> . TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
@@ -2723,14 +2915,15 @@ state 196
     ECHO            shift and go to state 19
     FOR             shift and go to state 21
     WHILE           shift and go to state 23
-    TRY             shift and go to state 25
-    SORT            shift and go to state 26
+    DO              shift and go to state 24
+    TRY             shift and go to state 26
+    SORT            shift and go to state 27
     NUMBER          shift and go to state 22
     LPAREN          shift and go to state 14
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
-    sentencias                     shift and go to state 199
+    sentencias                     shift and go to state 213
     asignacion                     shift and go to state 4
     comparacion                    shift and go to state 5
     funcion                        shift and go to state 6
@@ -2742,37 +2935,47 @@ state 196
     expcmp                         shift and go to state 15
     expcmplog                      shift and go to state 16
     sort                           shift and go to state 17
-    expresionmat                   shift and go to state 24
+    expresionmat                   shift and go to state 25
 
-state 197
+state 210
+
+    (64) repeticion -> DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA .
+
+    FIN             reduce using rule 64 (repeticion -> DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA .)
+    ID              reduce using rule 64 (repeticion -> DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA .)
+    RLLAVE          reduce using rule 64 (repeticion -> DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA .)
+    RETURN          reduce using rule 64 (repeticion -> DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA .)
+
+
+state 211
 
     (53) excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID . FLECHA GETMESSAGE RLLAVE
 
-    FLECHA          shift and go to state 200
+    FLECHA          shift and go to state 214
 
 
-state 198
+state 212
 
     (34) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE . LLLAVE sentencias RLLAVE
 
-    LLLAVE          shift and go to state 201
+    LLLAVE          shift and go to state 215
 
 
-state 199
+state 213
 
     (62) repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias . RLLAVE
 
-    RLLAVE          shift and go to state 202
+    RLLAVE          shift and go to state 216
 
 
-state 200
+state 214
 
     (53) excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA . GETMESSAGE RLLAVE
 
-    GETMESSAGE      shift and go to state 203
+    GETMESSAGE      shift and go to state 217
 
 
-state 201
+state 215
 
     (34) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE . sentencias RLLAVE
     (2) sentencias -> . asignacion
@@ -2797,6 +3000,7 @@ state 201
     (55) impresion -> . ECHO CADENA PCOMA
     (62) repeticion -> . FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE
     (63) repeticion -> . WHILE LPAREN ID opcomparacion valor RPAREN LLLAVE sentencias ID actualizar PCOMA RLLAVE
+    (64) repeticion -> . DO LLLAVE sentencias ID actualizar PCOMA RLLAVE WHILE LPAREN ID opcomparacion valor RPAREN PCOMA
     (46) expresion -> . expresionmat
     (47) expresion -> . expcmplog
     (53) excepcion -> . TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE
@@ -2818,15 +3022,16 @@ state 201
     ECHO            shift and go to state 19
     FOR             shift and go to state 21
     WHILE           shift and go to state 23
-    TRY             shift and go to state 25
-    SORT            shift and go to state 26
+    DO              shift and go to state 24
+    TRY             shift and go to state 26
+    SORT            shift and go to state 27
     NUMBER          shift and go to state 22
     LPAREN          shift and go to state 14
     CADENA          shift and go to state 20
-    BOOLEAN         shift and go to state 27
+    BOOLEAN         shift and go to state 28
 
     expcmp                         shift and go to state 15
-    sentencias                     shift and go to state 204
+    sentencias                     shift and go to state 218
     asignacion                     shift and go to state 4
     comparacion                    shift and go to state 5
     funcion                        shift and go to state 6
@@ -2837,55 +3042,55 @@ state 201
     valor                          shift and go to state 12
     expcmplog                      shift and go to state 16
     sort                           shift and go to state 17
-    expresionmat                   shift and go to state 24
+    expresionmat                   shift and go to state 25
 
-state 202
+state 216
 
     (62) repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE .
 
     FIN             reduce using rule 62 (repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE .)
+    ID              reduce using rule 62 (repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE .)
     RLLAVE          reduce using rule 62 (repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE .)
     RETURN          reduce using rule 62 (repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE .)
-    ID              reduce using rule 62 (repeticion -> FOR LPAREN ID ASIGNACION NUMBER PCOMA ID repeticionrep NUMBER PCOMA ID actualizar RPAREN LLLAVE sentencias RLLAVE .)
 
 
-state 203
+state 217
 
     (53) excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE . RLLAVE
 
-    RLLAVE          shift and go to state 205
+    RLLAVE          shift and go to state 219
 
 
-state 204
+state 218
 
     (34) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias . RLLAVE
 
-    RLLAVE          shift and go to state 206
+    RLLAVE          shift and go to state 220
 
 
-state 205
+state 219
 
     (53) excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE .
 
     FIN             reduce using rule 53 (excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE .)
+    ID              reduce using rule 53 (excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE .)
     RLLAVE          reduce using rule 53 (excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE .)
     RETURN          reduce using rule 53 (excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE .)
-    ID              reduce using rule 53 (excepcion -> TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE .)
 
 
-state 206
+state 220
 
     (34) comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .
 
     FIN             reduce using rule 34 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
+    ID              reduce using rule 34 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
     RLLAVE          reduce using rule 34 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
     RETURN          reduce using rule 34 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
-    ID              reduce using rule 34 (comparacion -> IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for BOOLEAN_OR in state 178 resolved as shift
-WARNING: shift/reduce conflict for BOOLEAN_AND in state 178 resolved as shift
-WARNING: shift/reduce conflict for AND in state 178 resolved as shift
-WARNING: shift/reduce conflict for OR in state 178 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN_OR in state 188 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN_AND in state 188 resolved as shift
+WARNING: shift/reduce conflict for AND in state 188 resolved as shift
+WARNING: shift/reduce conflict for OR in state 188 resolved as shift
