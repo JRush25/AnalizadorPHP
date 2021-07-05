@@ -1,27 +1,37 @@
 import ply.yacc as yacc
 from lexico import tokens
 
+#JoselyneTorres_inicio
 def p_programa(p):
     'programa : INICIO sentencias FIN'
     pass
+
+
 def p_sentencias(p):
     '''sentencias : asignacion
                     | comparacion
                     | funcion
                     | impresion
                     | repeticion
+                    | expresion
+                    | excepcion
     '''
+
 
 def p_asignacion(p):
     '''asignacion : ID ASIGNACION valor PCOMA
                 | ID REF ID PCOMA
-                | ID ASIGNACION array PCOMA'''
+                | ID ASIGNACION estdatos PCOMA
+                | ID ASIGNACION expresion PCOMA'''
+
+
 def p_valor(p):
     '''valor : ID
              | NUMBER
              | CADENA
              | BOOLEAN
     '''
+
 
 def p_opcomparacion(p):
     '''opcomparacion : IGUAL
@@ -31,31 +41,79 @@ def p_opcomparacion(p):
                     | MENORIGUAL
     '''
 
+
 def p_expresioncmp(p):
-    'expcmp : valor opcomparacion valor'
+    '''expcmp : valor opcomparacion valor
+            | LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN
+            | LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp'''
+
+
+def p_expresioncmplog(p):
+    ''' expcmplog : expcmp oplog expcmp
+                | expcmp oplog expcmplog'''
+
+
+def p_oplog(p):
+    '''oplog : BOOLEAN_OR
+            | BOOLEAN_AND
+            | AND
+            | OR'''
+
 
 def p_comparacionif(p):
-    'comparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE'
+    '''comparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE
+                    | IF LPAREN expcmplog RPAREN LLLAVE sentencias RLLAVE'''
+
 
 def p_comparacionif_else(p):
-    'comparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE'
+    '''comparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE'''
 
 def p_comparacionif_elseif_else(p):
-    'comparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE'
+    '''comparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE '''
 
 def p_array(p):
     '''array : ARRAY LPAREN valor DOUBLE_ARROW valor RPAREN
             | ARRAY LPAREN valor RPAREN'''
 
-def p_contenido_array(p):
-    '''contenido : valor DOUBLE_ARROW valor
-                | contenido COMA valor DOUBLE_ARROW valor'''
 
 def p_sort(p):
     'sort : SORT LPAREN ID RPAREN PCOMA'
 
+def p_estdatos(p):
+    '''estdatos : array
+                | array_map
+                | heap'''
+
+def p_expresionmat(p):
+    '''expresionmat : NUMBER operadormat NUMBER'''
+
+def p_operadormat(p):
+    '''operadormat : PLUS
+                    | DIVIDE
+                    | MINUS
+                    | TIMES'''
+
+
+def p_expresion(p):
+    '''expresion : expresionmat
+                | expcmplog'''
 def p_funcion(p):
     'funcion : sort'
+
+def p_funciondef(p):
+    '''funcion : FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RLLAVE
+            | FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE'''
+
+
+def p_args(p):
+    '''args : ID
+            | ID args'''
+
+def p_excepcion(p):
+    '''excepcion : TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE'''
+
+#JoselyneTorres_fin
+
 def p_impresion(p):
  '''impresion : ECHO ID PCOMA
              | ECHO CADENA PCOMA'''

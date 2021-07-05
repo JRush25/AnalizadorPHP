@@ -19,8 +19,11 @@ reserved = {
     'private' : 'PRIVATE',
     'protected': 'PROTECTED',
     'array' : 'ARRAY',
+    'getMessage' : 'GETMESSAGE',
     'print': 'PRINT',
     'sort' : 'SORT',
+    'Exception' : 'EXCEPTION',
+    'return' : 'RETURN',
     'const' : 'CONST', #Joselyne Torres (fin)
     'case' : 'CASE', #David Cevallos Inicio
     'break' : 'BREAK',
@@ -68,6 +71,8 @@ tokens = (
     'MENORIGUAL',
     'MAYORIGUAL',
     'COMA',
+    'FLECHA',
+    'NFUNCION',
     'INCREMENTO',
     'BOOLEAN_OR', #David Cevallos Inicio
     'BOOLEAN_AND',
@@ -101,6 +106,7 @@ t_PCOMA = r';'
 t_LLLAVE = r'\{'
 t_RLLAVE = r'\}'
 t_IGUAL = r'=='
+t_FLECHA = r'\-\>'
 t_MENORIGUAL = r'<='
 t_MAYORIGUAL = r'>='
 t_COMA = r','
@@ -119,6 +125,11 @@ t_RCORCH= r'\]'
 #Joselyne Torres (inicio)
 def t_ID(t):
     r'\$[a-zA-Z_]\w*'
+    t.type = reserved.get(t.value, 'ID')  # Check for reserved words
+    return t
+
+def t_NFUNCION(t):
+    r'[a-zA-Z]\w*'
     t.type = reserved.get(t.value, 'ID')  # Check for reserved words
     return t
 # A regular expression rule with some action code
@@ -166,6 +177,12 @@ def t_INCLUDE(t):
     return t
 def t_TRY(t):
     r'try'
+    return t
+def t_EXCEPTION(t):
+    r'exception'
+    return t
+def t_RETURN(t):
+    r'return'
     return t
 def t_CATCH(t):
     r'catch'
