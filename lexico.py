@@ -138,7 +138,7 @@ def t_NUMBER(t):
     t.value = int(t.value)
     return t
 def t_CADENA(t):
-    r'\'[\w\W\s]*\''
+    r'\'[\w\W\s]*\'|"[\w\W\s]*\"'
     t.value = str(t.value)
     return t
 def t_BOOLEAN(t):
@@ -240,6 +240,10 @@ def t_ARRAY_MAP(t):
 def t_HEAP(t):
     r'heap'
     return t
+def t_PRINT(t):
+    r'print'
+    return t
+
 
 
 

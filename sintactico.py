@@ -15,6 +15,8 @@ def p_sentencias(p):
                     | repeticion
                     | expresion
                     | excepcion
+                    | heap
+                    | array_map
     '''
 
 
@@ -24,14 +26,24 @@ def p_asignacion(p):
                 | ID ASIGNACION estdatos PCOMA
                 | ID ASIGNACION expresion PCOMA'''
 
+    print ("Se asigno el valor %s a %s"%(p[3],p[1]))
 
-def p_valor(p):
-    '''valor : ID
-             | NUMBER
-             | CADENA
-             | BOOLEAN
-    '''
 
+def p_valor_id(p):
+    '''valor : ID '''
+    p[0] = p[1]
+
+def p_valor_number(p):
+    '''valor : NUMBER '''
+    p[0] = p[1]
+
+def p_valor_cadena(p):
+    '''valor : CADENA'''
+    p[0] = p[1]
+
+def p_valor_boolean(p):
+    '''valor : BOOLEAN'''
+    p[0] = p[1]
 
 def p_opcomparacion(p):
     '''opcomparacion : IGUAL
@@ -115,8 +127,9 @@ def p_excepcion(p):
 #JoselyneTorres_fin
 
 def p_impresion(p):
- '''impresion : ECHO ID PCOMA
-             | ECHO CADENA PCOMA'''
+ '''impresion : ECHO valor PCOMA
+             | PRINT valor PCOMA'''
+ print(p[2])
 
 def p_repeticioncompfor(p):
   '''repeticionrep : MAYOR
@@ -144,14 +157,13 @@ def p_array_map(p):
     'array_map : ARRAY_MAP LPAREN funcion COMA array RPAREN PCOMA'
 
 def p_heap(p):
-    '''heap : HEAP DOUBLE_ARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
-                | LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA'''
-
-
+    '''heap : INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
+                | INSERT LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA'''
+    print ("Se ha insertado el %s en %s" %(p[6],p[4]))
 
 # Error rule for syntax errors
 def p_error(p):
-    print("Syntax error in input!")
+    print("Syntax error at '%s'" %p.value)
 
 # Build the parser
 parser = yacc.yacc()
