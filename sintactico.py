@@ -1,5 +1,8 @@
 import ply.yacc as yacc
 from lexico import tokens
+# Diccionario de Sentencias
+senten = { }
+listas = { }
 
 #JoselyneTorres_inicio
 def p_programa(p):
@@ -15,8 +18,7 @@ def p_sentencias(p):
                     | repeticion
                     | expresion
                     | excepcion
-                    | heap
-                    | array_map
+                    | estdatos
     '''
 
 
@@ -29,20 +31,11 @@ def p_asignacion(p):
     print ("Se asigno el valor %s a %s"%(p[3],p[1]))
 
 
-def p_valor_id(p):
-    '''valor : ID '''
-    p[0] = p[1]
-
-def p_valor_number(p):
-    '''valor : NUMBER '''
-    p[0] = p[1]
-
-def p_valor_cadena(p):
-    '''valor : CADENA'''
-    p[0] = p[1]
-
-def p_valor_boolean(p):
-    '''valor : BOOLEAN'''
+def p_valor(p):
+    '''valor : ID
+            | NUMBER
+            | BOOLEAN
+            | CADENA'''
     p[0] = p[1]
 
 def p_opcomparacion(p):
@@ -50,9 +43,8 @@ def p_opcomparacion(p):
                     | MAYOR
                     | MENOR
                     | MAYORIGUAL
-                    | MENORIGUAL
-    '''
-
+                    | MENORIGUAL '''
+    p[0] = p[1]
 
 def p_expresioncmp(p):
     '''expcmp : valor opcomparacion valor
@@ -70,6 +62,7 @@ def p_oplog(p):
             | BOOLEAN_AND
             | AND
             | OR'''
+    p[0] = p[1]
 
 
 def p_comparacionif(p):
@@ -99,12 +92,25 @@ def p_estdatos(p):
 def p_expresionmat(p):
     '''expresionmat : NUMBER operadormat NUMBER'''
 
-def p_operadormat(p):
-    '''operadormat : PLUS
-                    | DIVIDE
-                    | MINUS
-                    | TIMES'''
+    if p[2] == '+':
+        p[0] = p[1] + p[3]
+        #print(p[0])
+    elif p[2] == '-':
+        p[0] = p[1] - p[3]
+        #print(p[0])
+    elif p[2] == '*':
+        p[0] = p[1] * p[3]
+        #print(p[0])
+    elif p[2] == '/':
+        p[0] = p[1] / p[3]
+        #print(p[0])
 
+def p_operadormat_plus(p):
+    '''operadormat : PLUS
+                    | MINUS
+                    | TIMES
+                    | DIVIDE'''
+    p[0] = p[1]
 
 def p_expresion(p):
     '''expresion : expresionmat
@@ -128,16 +134,16 @@ def p_excepcion(p):
 
 def p_impresion(p):
  '''impresion : ECHO valor PCOMA
-             | PRINT valor PCOMA'''
+             | PRINT valor PCOMA
+             | PRINT expresionmat PCOMA'''
  print(p[2])
 
 def p_repeticioncompfor(p):
   '''repeticionrep : MAYOR
                   | MENOR
                   | MAYORIGUAL
-                  | MENORIGUAL
-  '''
-
+                  | MENORIGUAL '''
+  p[0] = p[1]
 def p_actualizar(p):
   '''actualizar : INCREMENTO
                 | DECREMENTO
@@ -159,9 +165,18 @@ def p_array_map(p):
 def p_heap(p):
     '''heap : INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
                 | INSERT LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA'''
-    print ("Se ha insertado el %s en %s" %(p[6],p[4]))
+    print ("Heap creado, se ha insertado el %s en %s" %(p[6],p[4]))
+
+
 
 # Error rule for syntax errors
+def p_expression_name(p):
+    'expression : ID'
+    try:
+        p[0] = senten[p[1]]
+    except LookupError:
+        print("Undefined name '%s'" % p[1])
+        p[0] = 0
 def p_error(p):
     print("Syntax error at '%s'" %p.value)
 
