@@ -258,6 +258,7 @@ t_ignore = ' \t'
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
+
 def getTokens(lexer):
     while True:
         tok = lexer.token()
@@ -266,12 +267,13 @@ def getTokens(lexer):
         print(tok)
 # Build the lexer
 lexer = lex.lex()
+
 '''
 linea=" "
 while linea!="":
     linea=input(">>")
     lexer.input(linea)
     getTokens(lexer)
-# Tokenize
-print("Succesfull")
 '''
+print("Succesfull")
+
