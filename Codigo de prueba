@@ -59,6 +59,14 @@ $arr = array(
 );
 ?>
 
+<?php
+$arr = array(
+    True => 2,
+    1,
+    $a => 'hola'
+);
+?>
+
 FUNCION
 <?php
 function foo($arg1,$a,$arg2){
