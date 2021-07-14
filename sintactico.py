@@ -34,10 +34,13 @@ def p_asignacion(p):
 def p_valor(p):
     '''valor : ID
             | NUMBER
-            | BOOLEAN
+            | FLOAT
+            | boolean
             | CADENA'''
     p[0] = p[1]
-
+def p_boolean(p):
+    '''boolean : BOOLEANT
+                | BOOLEANF'''
 def p_opcomparacion(p):
     '''opcomparacion : IGUAL
                     | MAYOR
@@ -125,13 +128,13 @@ def p_funcion(p):
     'funcion : sort'
 
 def p_funciondef(p):
-    '''funcion : FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RLLAVE
-            | FUNCTION NFUNCION ID LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE'''
+    '''funcion : FUNCTION NFUNCION LPAREN args RPAREN LLLAVE sentencias RLLAVE
+            | FUNCTION NFUNCION LPAREN args RPAREN LLLAVE sentencias RETURN valor PCOMA RLLAVE'''
 
 
 def p_args(p):
     '''args : ID
-            | ID args'''
+            | ID COMA args'''
 
 def p_excepcion(p):
     '''excepcion : TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID RLLAVE'''

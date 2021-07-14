@@ -32,6 +32,7 @@ reserved = {
 }
 tokens = (
     'NUMBER',
+    'FLOAT',
     'PLUS',
     'MINUS',
     'TIMES',
@@ -46,7 +47,8 @@ tokens = (
     'ASIGNACION',
     'REF',
     'CADENA',
-    'BOOLEAN',
+    'BOOLEANT',
+    'BOOLEANF',
     'INICIO',
     'FIN',
     'PCOMA',
@@ -79,7 +81,7 @@ t_MOD = r'%'
 t_MENOR = r'<'
 t_MAYOR = r'>'
 t_ASIGNACION = r'='
-t_REF = r'=\&'
+t_REF = r'=\s\&'
 t_INCREMENTO = r'\+\+'
 t_INICIO = r'<\?php'
 t_FIN = r'\?>'
@@ -105,22 +107,36 @@ def t_ID(t):
     t.type = reserved.get(t.value, 'ID')  # Check for reserved words
     return t
 
-def t_NFUNCION(t):
-    r'[a-zA-Z]\w*'
-    t.type = reserved.get(t.value, 'NFUNCION')  # Check for reserved words
-    return t
+
 # A regular expression rule with some action code
+def t_FLOAT(t):
+    r'\d+\.\d+'
+    t.value = float(t.value)
+    return t
+
+
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
     return t
+
 def t_CADENA(t):
     r'\'[\w\W\s]*\'|"[\w\W\s]*\"'
     t.value = str(t.value)
     return t
-def t_BOOLEAN(t):
-    r'(True|False)'
+def t_BOOLEANT(t):
+    r'(True)'
+    t.type = reserved.get(t.value, 'BOOLEANT')
     t.value = bool(t.value)
+    return t
+def t_BOOLEANF(t):
+    r'(False)'
+    t.type = reserved.get(t.value, 'BOOLEANF')
+    t.value = bool(t.value)
+    return t
+def t_NFUNCION(t):
+    r'[a-zA-Z]\w*'
+    t.type = reserved.get(t.value, 'NFUNCION')  # Check for reserved words
     return t
 def t_IF(t):
     r'if'
