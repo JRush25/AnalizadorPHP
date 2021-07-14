@@ -9,35 +9,20 @@ reserved = {
     'while' : 'WHILE',
     'and' : 'AND',
     'or' : 'OR',
-    'include' : 'INCLUDE',
     'try' : 'TRY',
     'catch' : 'CATCH',
-    'abstract' : 'ABSTRACT',
-    'declare' : 'DECLARE',
     'echo' : 'ECHO',
-    'public' :'PUBLIC',
-    'private' : 'PRIVATE',
-    'protected': 'PROTECTED',
     'array' : 'ARRAY',
-    'getMessage' : 'GETMESSAGE',
     'print': 'PRINT',
     'sort' : 'SORT',
     'Exception' : 'EXCEPTION',
     'return' : 'RETURN',
-    'const' : 'CONST', #Joselyne Torres (fin)
-    'case' : 'CASE', #David Cevallos Inicio
-    'break' : 'BREAK',
-    'class' : 'CLASS',
-    'continue': 'CONTINUE',
-    'default' : 'DEFAULT',
+     #Joselyne Torres (fin)
+     #David Cevallos Inicio
     'do' : 'DO',
-    'extends' : 'EXTENDS',
-    'final' : 'FINAL',
-  'function' : 'FUNCTION',
-  'global' : 'GLOBAL',
-  'instanceof' : 'INSTANCEOF', #David Cevallos fin
+    'function' : 'FUNCTION',
+   #David Cevallos fin
     'array_map' : 'ARRAY_MAP',
-    'heap' : 'HEAP',
     'insert' : 'INSERT'
 
 
@@ -71,15 +56,11 @@ tokens = (
     'MENORIGUAL',
     'MAYORIGUAL',
     'COMA',
-    'FLECHA',
     'NFUNCION',
     'INCREMENTO',
      #David Cevallos Inicio
 
-    'COMMENT',
-    'CONCAT_EQUAL',
     'DECREMENTO',
-    'DIV_EQUAL',
     'IS_NOT_EQUAL',
     'DOUBLE_ARROW', #David Cevallos Final
     'LCORCH',
@@ -106,16 +87,12 @@ t_PCOMA = r';'
 t_LLLAVE = r'\{'
 t_RLLAVE = r'\}'
 t_IGUAL = r'=='
-t_FLECHA = r'\-\>'
 t_MENORIGUAL = r'<='
 t_MAYORIGUAL = r'>='
 t_COMA = r','
   #David Cevallos Inicio
 
-t_COMMENT=r'\#'
-t_CONCAT_EQUAL=r'\.\='
 t_DECREMENTO= r'\-\-'
-t_DIV_EQUAL= r'\/\='
 t_IS_NOT_EQUAL= r'\!\='
 t_DOUBLE_ARROW= r'\=\>'  #David Cevallos Fin
 t_LCORCH= r'\['
@@ -172,9 +149,7 @@ def t_AND(t):
 def t_OR(t):
     r'(or|\|\|)'
     return t
-def t_INCLUDE(t):
-    r'include'
-    return t
+
 def t_TRY(t):
     r'try'
     return t
@@ -187,63 +162,28 @@ def t_RETURN(t):
 def t_CATCH(t):
     r'catch'
     return t
-def t_GETMESSAGE(t):
-    r'\-\>getmessage\(\)'
 
-    return (t)
-def t_ABSTRACT(t):
-    r'abstract'
-    return t
-def t_DECLARE(t):
-    r'declare'
-    return t
 def t_ECHO(t):
     r'echo'
     return t
-def t_CONST(t):
-    r'const'
-    return t
+
 #Joselyne Torres (fin)
-def t_CASE(t):
-    r'case'
-    return t
-def t_BREAK(t): #David Cevallos Inicio
-  r'break'
-  return t
-def t_CLASS(t):
-  r'class'
-  return t
-def t_CONTINUE(t):
-  r'continue'
-  return t
-def t_DEFAULT(t):
-    r'default'
-    return t
+
+ #David Cevallos Inicio
+
 def t_DO(t):
     r'do'
     return t
-def t_EXTENDS(t):
-    r'extends'
-    return t
-def t_FINAL(t):
-    r'final'
-    return t
+
 def t_FUNCTION(t):
   r'function'
   return t
-def t_GLOBAL(t):
-    r'global'
-    return t
-def t_INSTANCEOF(t):
-    r'instanceof'
-    return t
+
 #David Cevallos Fin
 def t_ARRAY_MAP(t):
     r'array_map'
     return t
-def t_HEAP(t):
-    r'heap'
-    return t
+
 def t_PRINT(t):
     r'print'
     return t

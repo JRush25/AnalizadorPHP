@@ -76,8 +76,14 @@ def p_comparacionif_elseif_else(p):
     '''comparacion : IF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSEIF LPAREN expcmp RPAREN LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE '''
 
 def p_array(p):
-    '''array : ARRAY LPAREN valor DOUBLE_ARROW valor RPAREN
-            | ARRAY LPAREN valor RPAREN'''
+    '''array : ARRAY LPAREN contenido RPAREN
+            '''
+
+def p_contenido(p):
+    '''contenido : valor DOUBLE_ARROW valor
+                | valor DOUBLE_ARROW valor COMA contenido
+                | valor
+                | valor COMA contenido'''
 
 
 def p_sort(p):
@@ -108,7 +114,8 @@ def p_operadormat_plus(p):
     '''operadormat : PLUS
                     | MINUS
                     | TIMES
-                    | DIVIDE'''
+                    | DIVIDE
+                    | MOD'''
     p[0] = p[1]
 
 def p_expresion(p):
