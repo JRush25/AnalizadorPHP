@@ -74,8 +74,8 @@ tokens = (
     'FLECHA',
     'NFUNCION',
     'INCREMENTO',
-    'BOOLEAN_OR', #David Cevallos Inicio
-    'BOOLEAN_AND',
+     #David Cevallos Inicio
+
     'COMMENT',
     'CONCAT_EQUAL',
     'DECREMENTO',
@@ -110,8 +110,8 @@ t_FLECHA = r'\-\>'
 t_MENORIGUAL = r'<='
 t_MAYORIGUAL = r'>='
 t_COMA = r','
-t_BOOLEAN_OR= r'\|\|'  #David Cevallos Inicio
-t_BOOLEAN_AND= r'\&\&'
+  #David Cevallos Inicio
+
 t_COMMENT=r'\#'
 t_CONCAT_EQUAL=r'\.\='
 t_DECREMENTO= r'\-\-'
@@ -167,10 +167,10 @@ def t_FOR(t):
     r'for'
     return t
 def t_AND(t):
-    r'and'
+    r'(and|\&\&)'
     return t
 def t_OR(t):
-    r'or'
+    r'(or|\|\|)'
     return t
 def t_INCLUDE(t):
     r'include'
@@ -187,6 +187,10 @@ def t_RETURN(t):
 def t_CATCH(t):
     r'catch'
     return t
+def t_GETMESSAGE(t):
+    r'\-\>getmessage\(\)'
+
+    return (t)
 def t_ABSTRACT(t):
     r'abstract'
     return t
@@ -274,5 +278,14 @@ while linea!="":
     lexer.input(linea)
     getTokens(lexer)
 '''
-print("Succesfull")
+def analizar(data):
+    lexer.input(data)
+    arr = []
+    # Tokenize
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break  # No more input
+        arr.append(tok)
+    return arr
 

@@ -43,13 +43,14 @@ def p_opcomparacion(p):
                     | MAYOR
                     | MENOR
                     | MAYORIGUAL
-                    | MENORIGUAL '''
+                    | MENORIGUAL
+                    | IS_NOT_EQUAL'''
     p[0] = p[1]
 
 def p_expresioncmp(p):
     '''expcmp : valor opcomparacion valor
             | LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN
-            | LPAREN valor opcomparacion valor RPAREN oplog LPAREN valor opcomparacion valor RPAREN oplog expcmp'''
+            '''
 
 
 def p_expresioncmplog(p):
@@ -58,9 +59,7 @@ def p_expresioncmplog(p):
 
 
 def p_oplog(p):
-    '''oplog : BOOLEAN_OR
-            | BOOLEAN_AND
-            | AND
+    '''oplog : AND
             | OR'''
     p[0] = p[1]
 
@@ -128,7 +127,7 @@ def p_args(p):
             | ID args'''
 
 def p_excepcion(p):
-    '''excepcion : TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID FLECHA GETMESSAGE RLLAVE'''
+    '''excepcion : TRY LLLAVE sentencias RLLAVE CATCH LPAREN EXCEPTION ID RPAREN LLLAVE ECHO CADENA COMA ID RLLAVE'''
 
 #JoselyneTorres_fin
 
@@ -170,23 +169,28 @@ def p_heap(p):
 
 
 # Error rule for syntax errors
-def p_expression_name(p):
+'''def p_expression_name(p):
     'expression : ID'
     try:
         p[0] = senten[p[1]]
     except LookupError:
         print("Undefined name '%s'" % p[1])
-        p[0] = 0
-def p_error(p):
-    print("Syntax error at '%s'" %p.value)
+        p[0] = 0'''
+'''def p_error(p):
+    print("Syntax error at '%s'" %p.value)'''
 
+# Error rule for syntax errors
+error=[]
+error.append("")
+def p_error(p):
+    error[0] = "Syntax error in input!"
 # Build the parser
 parser = yacc.yacc()
-while True:
+'''while True:
     try:
         s = input('calc > ')
     except EOFError:
         break
     if not s: continue
     result = parser.parse(s)
-    print(result)
+    print(result)'''
