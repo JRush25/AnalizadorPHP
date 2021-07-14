@@ -66,7 +66,8 @@ tokens = (
     'IS_NOT_EQUAL',
     'DOUBLE_ARROW', #David Cevallos Final
     'LCORCH',
-    'RCORCH'
+    'RCORCH',
+    'SINGLEARROW'
 
 #Joselyne Torres (fin)
 ) + tuple(reserved.values())
@@ -99,6 +100,7 @@ t_IS_NOT_EQUAL= r'\!\='
 t_DOUBLE_ARROW= r'\=\>'  #David Cevallos Fin
 t_LCORCH= r'\['
 t_RCORCH= r'\]'
+t_SINGLEARROW = r'->'
 
 
 #Joselyne Torres (inicio)
@@ -204,6 +206,9 @@ def t_PRINT(t):
     r'print'
     return t
 
+def t_COMMENT(t):
+    r'\/\/.*'
+    pass
 
 
 

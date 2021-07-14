@@ -173,12 +173,12 @@ def p_repeticionwhile(p):
   '''
 
 def p_array_map(p):
-    'array_map : ARRAY_MAP LPAREN funcion COMA array RPAREN PCOMA'
+    'array_map : ARRAY_MAP LPAREN CADENA COMA valor RPAREN PCOMA'
 
 def p_heap(p):
-    '''heap : INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
-                | INSERT LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA'''
-    print ("Heap creado, se ha insertado el %s en %s" %(p[6],p[4]))
+    '''heap : ID SINGLEARROW INSERT LPAREN LCORCH NUMBER COMA NUMBER RCORCH RPAREN PCOMA
+                | ID SINGLEARROW INSERT LPAREN ARRAY LPAREN valor DOUBLE_ARROW NUMBER RPAREN RPAREN PCOMA'''
+    #print ("Heap creado, se ha insertado el %s en %s" %(p[6],p[4]))
 
 
 
