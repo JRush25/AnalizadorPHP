@@ -96,9 +96,13 @@ def p_estdatos(p):
     '''estdatos : array
                 | array_map
                 | heap'''
+def p_numero(p):
+    '''numero : NUMBER
+            | FLOAT'''
+    p[0] = p[1]
 
 def p_expresionmat(p):
-    '''expresionmat : NUMBER operadormat NUMBER'''
+    '''expresionmat : numero operadormat numero'''
 
     if p[2] == '+':
         p[0] = p[1] + p[3]
