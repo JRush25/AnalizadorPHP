@@ -130,7 +130,7 @@ def t_ID(t):
 
 def t_NFUNCION(t):
     r'[a-zA-Z]\w*'
-    t.type = reserved.get(t.value, 'ID')  # Check for reserved words
+    t.type = reserved.get(t.value, 'NFUNCION')  # Check for reserved words
     return t
 # A regular expression rule with some action code
 def t_NUMBER(t):
@@ -267,7 +267,6 @@ def getTokens(lexer):
         print(tok)
 # Build the lexer
 lexer = lex.lex()
-
 '''
 linea=" "
 while linea!="":
